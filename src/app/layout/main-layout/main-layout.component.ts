@@ -6,7 +6,7 @@ import { RouterOutlet } from '@angular/router';
 
 // بما أنك استخدمت <app-header> في الـ HTML الخاص بالـ Layout، 
 // يجب عليك استيراد HeaderComponent هنا ليعرفه Angular
-import { Header } from '../header/header'; 
+import { HeaderComponent } from '../header/header'; 
 
 @Component({
   selector: 'app-main-layout',
@@ -15,7 +15,7 @@ import { Header } from '../header/header';
   imports: [
     CommonModule, 
     RouterOutlet, 
-    Header // ⬅️ استيراد الهيدر هنا
+    HeaderComponent // ⬅️ استيراد الهيدر هنا
   ],
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css']

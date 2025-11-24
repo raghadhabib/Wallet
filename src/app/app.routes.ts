@@ -1,24 +1,23 @@
-import { Component } from '@angular/core';
-import { Routes } from '@angular/router';
+// src/app/app.routes.ts
+// src/app/app.routes.ts
+
+import { Routes } from '@angular/router'; // ⬅️ تأكد من وجود هذا السطر
 import { LoginComponent } from './pages/login/login.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
-
+// ...
 export const routes: Routes = [
-  // صفحة الدخول تكون منفصلة (بدون Layout الهيدر)
-  { 
-    path: 'login', 
-    component: LoginComponent 
-  },
-  
-  // باقي الصفحات تكون داخل الـ Layout
+  // 1. يجب أن يكون هذا المسار أولاً: إعادة التوجيه إلى 'login'
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, 
+
+  // 2. صفحة الدخول
+  { path: 'login', component: LoginComponent },
+    
+  // 3. باقي الصفحات (يجب وضعها تحت مسار مختلف مثل 'app')
   {
-    path: '',
+    path: 'app', // ⬅️ هام: يجب تغيير هذا المسار
     component: MainLayoutComponent,
     children: [
-      // { path: 'dashboard', component: DashboardComponent }, // مثال
+      // ... أي صفحات محمية أخرى هنا ...
     ]
   },
-  
-  // تحويل الرابط الفارغ إلى اللوجن
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
