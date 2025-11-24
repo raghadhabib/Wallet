@@ -1,0 +1,42 @@
+<div class="login-container">
+  <div class="left-panel">
+     </div>
+
+  <div class="right-panel">
+    <div class="form-wrapper">
+      <h2>Sign In</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            placeholder="merchant@example.com" 
+            class="custom-input"
+          >
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="password">Your password</label>
+            <span class="toggle-password" (click)="togglePasswordVisibility()">
+              {{ isPasswordVisible ? 'Hide' : 'Show' }}
+            </span>
+          </div>
+          <input 
+            [type]="isPasswordVisible ? 'text' : 'password'" 
+            id="password" 
+            formControlName="password"
+            class="custom-input"
+          >
+        </div>
+
+        <button type="submit" class="btn-signin" [disabled]="loginForm.invalid">Sign In</button>
+      </form>
+
+    </div>
+  </div>
+</div>

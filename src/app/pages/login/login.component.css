@@ -1,0 +1,190 @@
+/* إعدادات عامة */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط مشابه */
+}
+
+.login-container {
+  display: flex;
+  height: 100vh; /* ملء الشاشة */
+  width: 100%;
+  background-color: white;
+}
+
+/* --- تنسيق القسم الأيسر --- */
+.left-panel {
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+  background-color: #333; /* لون احتياطي */
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* الطبقة الشفافة الزرقاء فوق الصورة */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, rgba(0, 100, 150, 0.6), rgba(0, 50, 100, 0.8));
+  z-index: 2; /* فوق الصورة */
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* اللوجو فوق والنص في المنتصف/تحت */
+}
+
+.logo-box {
+  margin-bottom: auto; /* يدفع المحتوى للأسفل */
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: black;
+  border-radius: 8px;
+  position: relative;
+}
+/* مثلث صغير داخل اللوجو لمحاكاة الصورة */
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-left: 10px solid #00d4ff;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.content-text {
+  color: white;
+  margin-top: 100px;
+}
+
+.content-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.content-text p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  max-width: 80%;
+}
+
+/* --- تنسيق القسم الأيمن --- */
+.right-panel {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 450px; /* عرض النموذج لا يتجاوز حداً معيناً */
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  color: #666;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+/* تنسيق حقول الإدخال لتشبه الصورة (خلفية زرقاء فاتحة جداً) */
+.custom-input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #eef5ff; /* اللون الأزرق الفاتح جداً */
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.custom-input:focus {
+  background-color: #e0eeff; /* لون أغمق قليلاً عند الكتابة */
+  box-shadow: 0 0 0 2px #cbdfff;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-password {
+  cursor: pointer;
+  color: #666;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-signin {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to right, #5b86e5, #36d1dc); /* تدرج أزرق */
+  background-color: #4f7df9; /* لون بديل */
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: opacity 0.3s;
+}
+
+.btn-signin:hover {
+  opacity: 0.9;
+}
+
+/* --- استجابة للشاشات الصغيرة (موبايل) --- */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+  .left-panel, .right-panel {
+    width: 100%;
+  }
+  .left-panel {
+    height: 40vh; /* تصغير الصورة في الموبايل */
+  }
+  .right-panel {
+    height: 60vh;
+  }
+  .content-text h1 {
+    font-size: 2rem;
+  }
+}
