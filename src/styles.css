@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* تأكد أن الـ body يملأ الشاشة */
+    width: 100%;
+}
+app-root {
+    display: block; /* لضمان أن الـ app-root يأخذ الحجم الصحيح */
+    height: 100%;
+}
