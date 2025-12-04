@@ -7,7 +7,7 @@ import { LoginRequest } from '../models/login-request.model';
   providedIn: 'root'
 })
 export class AuthService {
-  // استخدام الرابط من ملف البيئة
+ 
   private apiUrl = `${environment.apiUrl}/auth/login`;
 
   constructor(private http: HttpClient) {}
