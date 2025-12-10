@@ -1,0 +1,91 @@
+.page-header h2 {
+font-size: 1.8rem;
+color: #333;
+margin-bottom: 5px;
+}
+
+.page-header p {
+font-size: 0.9rem;
+color: #666;
+margin-bottom: 30px;
+}
+
+.user-management-panel {
+background-color: white;
+padding: 20px;
+border-radius: 12px;
+ /* الظل الخفيف سيتم تطبيقه باستخدام mat-elevation-z1 في HTML */
+}
+
+.user-management-panel h3 {
+font-size: 1.2rem;
+color: #333;
+margin-bottom: 20px;
+}
+
+/* --- صندوق البحث (Search Box) --- */
+.search-box {
+display: flex;
+align-items: center;
+width: 100%;
+max-width: 350px;
+border: 1px solid #e0e0e0;
+border-radius: 8px;
+padding: 8px 15px;
+margin-bottom: 25px;
+background-color: #f9f9f9;
+}
+
+.search-box input {
+border: none;
+outline: none;
+flex-grow: 1;
+padding: 5px 10px;
+background-color: transparent;
+font-size: 0.9rem;
+}
+
+.search-box .search-icon {
+color: #888;
+font-size: 20px;
+}
+
+/* --- أنماط تفاصيل الخلايا (داخل الخلايا) --- */
+.user-name {
+font-weight: 600;
+color: #333;
+}
+
+.user-id {
+font-size: 0.8rem;
+color: #999;
+margin-top: 2px;
+}
+
+/* تنسيق عمود الإجراءات */
+.action-icon {
+color: #007bff;
+font-size: 20px;
+cursor: pointer;
+opacity: 0.7;
+transition: opacity 0.2s;
+}
+
+.action-icon:hover {
+opacity: 1;
+}
+
+/* --- رسالة عدم وجود بيانات والـ Spinner --- */
+.loading-spinner-container {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 150px;
+}
+
+.no-data-message {
+text-align: center;
+color: #999;
+padding: 50px 0;
+font-size: 1.1rem;
+}

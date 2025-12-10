@@ -12,3 +12,60 @@ app-root {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* src/styles.css - أنماط Material Table العامة لتمثيل الصف كبطاقة */
+
+.wallet-table {
+width: 100%;
+ /* لإزالة الظل الافتراضي لـ mat-table */
+box-shadow: none !important; 
+border-collapse: separate; 
+border-spacing: 0 12px; /* مسافة بين الصفوف (البطاقات) */
+}
+
+/* تنسيق صفوف الرأس (الخلفية والألوان) */
+.wallet-table .mat-header-row {
+height: 40px; /* لتقليل ارتفاع رأس الجدول */
+}
+
+.wallet-table th.mat-header-cell {
+color: #666; /* لون نص رأس الجدول */
+font-weight: 500;
+font-size: 0.8rem;
+text-transform: uppercase;
+padding: 0 10px;
+border-bottom: none; /* إزالة الخط الفاصل */
+}
+
+/* تنسيق صف البيانات (البطاقة) */
+.wallet-table tr.mat-row.user-row-card {
+background-color: #ffffff;
+border-radius: 8px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* ظل واضح للصف */
+height: auto; /* للسماح بحجم المحتوى */
+min-height: 70px; /* ارتفاع أدنى */
+transition: box-shadow 0.2s;
+}
+
+.wallet-table tr.mat-row.user-row-card:hover {
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* ظل أكبر عند التمرير */
+}
+
+/* تنسيق خلايا البيانات */
+.wallet-table td.mat-cell {
+padding: 10px 10px;
+font-size: 0.95rem;
+border-bottom: none; /* إزالة الخط الفاصل بين الخلايا */
+}
+
+/* لجعل عمود الإجراءات على اليمين */
+.wallet-table td.mat-cell:last-child {
+text-align: right;
+}
+
+/* تخصيص الـ Paginator */
+.user-management-panel .custom-paginator {
+background-color: #f7f9fc;
+border-radius: 8px;
+margin-top: 15px;
+padding: 5px 10px;
+}
