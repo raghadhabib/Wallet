@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl:''
+  apiUrl:'https://backoffice-dev-api.mahfza.com/api'
 };

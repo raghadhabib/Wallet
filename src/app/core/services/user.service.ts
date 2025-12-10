@@ -4,17 +4,39 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 // نموذج مبسط لرد الـ API
-export interface UserWallet {
-  id: string;
-  name: string;
-  balance: number;
+
+
+export interface Walletable {
+    id: number;
+    name: string; // ⬅️ هذا هو الاسم الفعلي للمستخدم
+    created_at: string;
+    updated_at: string;
+    deleted_at: string | null;
 }
 
+export interface UserWallet {
+  id: string;
+  // 🛑 حذف name القديم وإضافة الحقول الجديدة
+  // name: string; // لا حاجة لهذا الحقل هنا
+  balance: number;
+  // إضافة الحقل المتداخل الجديد
+  walletable: Walletable; // ⬅️ هذا هو الحقل الجديد
+walletable_type: string; // مثل "users"
+  unique_key: string; // مثل "STUDENT-6216-..."
+}
+
+export interface WalletsResponse {
+  current_page: number;
+  data: UserWallet[]; // ⬅️ مصفوفة المستخدمين داخل حقل 'data'
+  // ... يمكنك إضافة باقي الحقول مثل first_page_url, from, to, etc.
+}
+
+// 🛑 تعديل الهيكل الرئيسي لرد جلب المحافظ (Wallets)
 export interface UserWalletListResponse {
-  data: UserWallet[];
-  total: number;
-  page: number;
-  page_size: number;
+  data: {
+    wallets: WalletsResponse; // ⬅️ الآن حقل 'wallets' هو المطلوب داخل 'data'
+  };
+  current_datetime: string;
 }
 
 @Injectable({
@@ -42,4 +64,5 @@ export class UserService {
     // الـ HttpInterceptor سيضيف التوكن تلقائياً هنا
     return this.http.get<UserWalletListResponse>(url, { params });
   }
+  
 }

@@ -28,8 +28,8 @@
       <tbody>
         <tr *ngFor="let user of users">
           <td>
-            <div class="user-name">{{ user.name }}</div>
-            <div class="user-id">{{ user.id }}</div>
+            <div class="user-name">{{ user.walletable.name }}</div>
+            <div class="user-id">{{ user.unique_key }}</div>
           </td>
           <td>${{ user.balance | number:'1.2-2' }}</td>
           <td>
