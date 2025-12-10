@@ -10,17 +10,17 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = authService.getToken();
 
   // لا حاجة لإضافة التوكن لطلب تسجيل الدخول نفسه
-  if (req.url.includes('/auth/login')) {
-    return next(req);
-  }
+ if (req.url.includes('/login')) {
+    return next(req);
+  }
 
   // إذا وجد التوكن، قم بنسخ (Clone) الطلب وإضافة الـ Header
-  if (token) {
-    req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}` 
-      }
-    });
-  }
-  return next(req);
+if (token) {
+    req = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}` 
+      }
+    });
+  }
+  return next(req);
 };
