@@ -1,42 +1,56 @@
 <div class="page-header">
-  <h2>Users & Wallets</h2>
-  <p>Manage users and their wallet permissions</p>
+  <h2>Users & Wallets</h2>
+  <p>Manage users and their wallet permissions</p>
 </div>
 
 <div class="user-management-panel">
-  <h3>User Management</h3>
-  
-  <div class="search-box">
-    <span class="material-icons search-icon">search</span>
-    <input 
-      type="text" 
-      placeholder="Search" 
-      [(ngModel)]="searchTerm" 
-      (ngModelChange)="onSearch()" 
-    >
-  </div>
-  
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Users <span class="material-icons sort-icon">arrow_upward</span></th>
-          <th>Balance</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>
-            <div class="user-name">{{ user.walletable.name }}</div>
-            <div class="user-id">{{ user.unique_key }}</div>
-          </td>
-          <td>${{ user.balance | number:'1.2-2' }}</td>
-          <td>
-            <span class="material-icons action-icon">visibility</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <h3>User Management</h3>
+  
+  <div class="search-box">
+    <span class="material-icons search-icon">search</span>
+    <input 
+      type="text" 
+      placeholder="Search by Name or ID" 
+      [(ngModel)]="searchTerm" 
+      (ngModelChange)="onSearch()" 
+    >
+  </div>
+  
+    <div class="table-container">
+
+        <div *ngIf="isLoading" class="loading-spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef>Users</th>
+        <td mat-cell *matCellDef="let user">
+          <div class="user-name">{{ user.walletable.name }}</div>
+          <div class="user-id">{{ user.unique_key }}</div>
+        </td>
+      </ng-container>
+
+            <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef>Balance</th>
+        <td mat-cell *matCellDef="let user">${{ user.balance | number:'1.2-2' }}</td>
+      </ng-container>
+
+            <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let user">
+          <span class="material-icons action-icon">visibility</span>
+        </td>
+      </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+        <div *ngIf="users.length === 0 && !isLoading" class="no-data-message">
+      لا توجد بيانات لعرضها.
+    </div>
+  </div>
 </div>

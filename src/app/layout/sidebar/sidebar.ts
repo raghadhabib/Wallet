@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router'; // للتنقل وتفعيل زر المسار النشط
+import { Router, RouterLink, RouterLinkActive} from '@angular/router'; // للتنقل وتفعيل زر المسار النشط
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -20,11 +20,14 @@ export class SidebarComponent {
     { name: 'Vendors & Wallets', icon: 'account_balance_wallet', route: '/app/vendors' },
   ];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   // دالة لتسجيل الخروج (Logout)
-  onLogout(): void {
-    this.authService.logout();
-    // Angular Guard سيقوم بتحويل المستخدم إلى /login بعد مسح التوكن
-  }
+onLogout(): void {
+    // 1. مسح التوكن ونوع المستخدم من Local Storage
+    this.authService.logout();
+    
+    // 🛑 2. إعادة التوجيه إلى صفحة الدخول (Login)
+    this.router.navigate(['/login']); 
+  }
 }
