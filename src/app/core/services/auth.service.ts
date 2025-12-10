@@ -33,7 +33,7 @@ export class AuthService {
 
   private loginUrl = `${environment.apiUrl}/login`;
 
-  private apiUrl = `${environment.apiUrl}/login`;
+  
 
   constructor(private http: HttpClient) {}
 
