@@ -27,8 +27,8 @@ walletable_type: string; // مثل "users"
 
 export interface WalletsResponse {
   current_page: number;
-  data: UserWallet[]; // ⬅️ مصفوفة المستخدمين داخل حقل 'data'
-  // ... يمكنك إضافة باقي الحقول مثل first_page_url, from, to, etc.
+  data: UserWallet[];
+  total: number;
 }
 
 // 🛑 تعديل الهيكل الرئيسي لرد جلب المحافظ (Wallets)

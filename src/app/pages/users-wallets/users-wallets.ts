@@ -5,11 +5,12 @@ import { UserService } from '../../core/services/user.service';
 import { UserWallet } from '../../core/services/user.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users-wallets',
   standalone: true,
-  imports: [CommonModule, FormsModule,MatTableModule, MatProgressSpinnerModule], // إضافة FormsModule
+  imports: [CommonModule, FormsModule,MatTableModule, MatProgressSpinnerModule, MatPaginatorModule], // إضافة FormsModule
   templateUrl: './users-wallets.html',
   styleUrls: ['./users-wallets.css']
 })
@@ -22,8 +23,15 @@ export class UsersWalletsComponent implements OnInit {
   
   private originalUsers: UserWallet[] = [];
 
+  totalItems: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 10;
+  pageSizeOptions: number[] = [5, 10, 25];
+
   displayedColumns: string[] = ['user', 'balance', 'actions'];
+
   
+
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -33,25 +41,28 @@ export class UsersWalletsComponent implements OnInit {
 
   fetchUsers(): void {
     this.isLoading = true;
-    this.userService.getUsers(1, 10).subscribe({
+    this.userService.getUsers(this.currentPage, this.pageSize).subscribe({
       next: (response) => {
-        // 🛑 هذا هو المكان الذي تم فيه التعديل
-        // يتم استخلاص البيانات من response.data.wallets.data
-        const receivedUsers = response.data.wallets.data; // ⬅️ **هنا يجب وضعه**
-        this.originalUsers = receivedUsers;
-        this.users = receivedUsers;
-        
-        // يمكنك إبقاء الـ Log للتأكد:
-        console.log('Users Data Received:', this.users);
+        const receivedData = response.data.wallets;
+        const receivedUsers = receivedData.data;
 
+        // 🛑 5. تحديث إجمالي العناصر (Total Items) من الـ API
+        this.totalItems = receivedData.total || 0; 
+        
+        this.originalUsers = receivedUsers;
+        this.users = receivedUsers;
         this.isLoading = false;
       },
       error: (err) => {
         console.error('Failed to fetch users:', err);
         this.isLoading = false;
-        // ⬅️ ملاحظة: إذا كان الـ API يرجع بيانات فارغة كـ 404 بدلاً من 200، فقد نحتاج لإضافة معالجة هنا.
       }
     });
+  }
+  handlePageEvent(e: PageEvent): void {
+    this.currentPage = e.pageIndex + 1; // pageIndex يبدأ من 0، والـ API يبدأ من 1
+    this.pageSize = e.pageSize;
+    this.fetchUsers();
   }
 
   // دالة البحث (يمكن تطويرها لاحقاً لفلترة البيانات)
