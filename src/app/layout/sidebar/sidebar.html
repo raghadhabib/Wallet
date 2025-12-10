@@ -1,0 +1,25 @@
+<div class="sidebar-container">
+  
+  <div class="logo-section">
+    <span class="logo-text">Wallet</span>
+  </div>
+
+  <nav class="nav-menu">
+    <a 
+      *ngFor="let item of navItems" 
+      [routerLink]="item.route" 
+      routerLinkActive="active-link"
+      class="nav-item"
+    >
+      <span class="material-icons">{{ item.icon }}</span>
+      <span class="item-name">{{ item.name }}</span>
+    </a>
+  </nav>
+
+  <div class="logout-section">
+    <button (click)="onLogout()" class="logout-button">
+      <span class="material-icons">logout</span>
+      <span>Logout</span>
+    </button>
+  </div>
+</div>

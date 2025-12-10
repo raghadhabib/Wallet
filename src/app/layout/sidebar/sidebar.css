@@ -1,0 +1,81 @@
+/* src/app/layout/sidebar/sidebar.component.css */
+
+.sidebar-container {
+    width: 250px; /* عرض ثابت للقائمة الجانبية */
+    min-width: 250px;
+    background-color: white; /* خلفية بيضاء */
+    color: #333;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); /* ظل خفيف */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* الشعار */
+.logo-section {
+    padding: 0 20px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff; /* لون الشعار */
+}
+
+/* قائمة التنقل */
+.nav-menu {
+    flex-grow: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    margin: 5px 15px;
+    text-decoration: none;
+    color: #555;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: #f0f8ff; /* خلفية فاتحة عند المرور بالماوس */
+    color: #007bff;
+}
+
+/* تفعيل المسار النشط */
+.active-link {
+    background-color: #e0f0ff; /* خلفية زرقاء فاتحة للزر النشط */
+    color: #007bff;
+    font-weight: 600;
+}
+
+.material-icons {
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+/* قسم تسجيل الخروج */
+.logout-section {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.logout-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff4d4d; /* لون أحمر */
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    gap: 10px;
+    transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+    background-color: #e60000;
+}

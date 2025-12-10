@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from '../header/header'; 
+import { SidebarComponent } from '../sidebar/sidebar';
 
 @Component({
   selector: 'app-main-layout',
@@ -10,7 +11,8 @@ import { HeaderComponent } from '../header/header';
   imports: [
     CommonModule, 
     RouterOutlet, 
-    HeaderComponent 
+    HeaderComponent ,
+    SidebarComponent
   ],
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css']

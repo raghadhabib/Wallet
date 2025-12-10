@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h2>Users & Wallets</h2>
+  <p>Manage users and their wallet permissions</p>
+</div>
+
+<div class="user-management-panel">
+  <h3>User Management</h3>
+  
+  <div class="search-box">
+    <span class="material-icons search-icon">search</span>
+    <input 
+      type="text" 
+      placeholder="Search" 
+      [(ngModel)]="searchTerm" 
+      (ngModelChange)="onSearch()" 
+    >
+  </div>
+  
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Users <span class="material-icons sort-icon">arrow_upward</span></th>
+          <th>Balance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>
+            <div class="user-name">{{ user.name }}</div>
+            <div class="user-id">{{ user.id }}</div>
+          </td>
+          <td>${{ user.balance | number:'1.2-2' }}</td>
+          <td>
+            <span class="material-icons action-icon">visibility</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://backoffice-dev-api.mahfza.com/api",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
