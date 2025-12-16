@@ -10,7 +10,7 @@
     <span class="material-icons search-icon">search</span>
     <input 
       type="text" 
-      placeholder="Search by Name or ID" 
+      placeholder="Search" 
       [(ngModel)]="searchTerm" 
       (ngModelChange)="onSearch()" 
     >
@@ -55,7 +55,6 @@
         <mat-paginator
       [length]="totalItems" 
       [pageSize]="pageSize"
-      [pageSizeOptions]="pageSizeOptions"
       (page)="handlePageEvent($event)"
       showFirstLastButtons
       class="custom-paginator"

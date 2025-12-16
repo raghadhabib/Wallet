@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
-import { HeaderComponent } from '../header/header'; 
 import { SidebarComponent } from '../sidebar/sidebar';
 
 @Component({
@@ -11,7 +9,6 @@ import { SidebarComponent } from '../sidebar/sidebar';
   imports: [
     CommonModule, 
     RouterOutlet, 
-    HeaderComponent ,
     SidebarComponent
   ],
   templateUrl: './main-layout.component.html',

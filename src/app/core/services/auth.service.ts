@@ -61,7 +61,7 @@ export class AuthService {
           console.error('Login successful, but token or user type field is missing in response.');
         }
       })
-    ); // ⬅️ التأكد من إغلاق القوسين هنا
+    ); 
   };
    getToken(): string | null {  
         return localStorage.getItem(this.AUTH_TOKEN_KEY);
@@ -71,7 +71,7 @@ export class AuthService {
     return !!this.getToken();
   }
 
-  // 🛑 2. الدالة المفقودة: logout (يطلبها sidebar.ts)
+  
   logout(): void {
     // يفضل مسح المفاتيح المحددة بدلاً من مسح كل شيء لتجنب مسح بيانات تطبيقات أخرى
     localStorage.removeItem(this.AUTH_TOKEN_KEY); 
