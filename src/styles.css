@@ -1,71 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
-/* src/styles.css */
+
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%; /* تأكد أن الـ body يملأ الشاشة */
+    height: 100%; 
     width: 100%;
 }
 app-root {
-    display: block; /* لضمان أن الـ app-root يأخذ الحجم الصحيح */
+    display: block; 
     height: 100%;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-/* src/styles.css - أنماط Material Table العامة لتمثيل الصف كبطاقة */
-
-.wallet-table {
-width: 100%;
- /* لإزالة الظل الافتراضي لـ mat-table */
-box-shadow: none !important; 
-border-collapse: separate; 
-border-spacing: 0 12px; /* مسافة بين الصفوف (البطاقات) */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* تنسيق صفوف الرأس (الخلفية والألوان) */
+
+/* Material Table Enhancements */
+.wallet-table {
+    width: 100%;
+    box-shadow: none !important;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+/* Table Header */
 .wallet-table .mat-header-row {
-height: 40px; /* لتقليل ارتفاع رأس الجدول */
+    height: 48px;
+    background-color: transparent;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .wallet-table th.mat-header-cell {
-color: #666; /* لون نص رأس الجدول */
-font-weight: 500;
-font-size: 0.8rem;
-text-transform: uppercase;
-padding: 0 10px;
-border-bottom: none; /* إزالة الخط الفاصل */
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 16px;
+    border-bottom: none;
+    background-color: transparent;
 }
 
-/* تنسيق صف البيانات (البطاقة) */
-.wallet-table tr.mat-row.user-row-card {
-background-color: #ffffff;
-border-radius: 8px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* ظل واضح للصف */
-height: auto; /* للسماح بحجم المحتوى */
-min-height: 70px; /* ارتفاع أدنى */
-transition: box-shadow 0.2s;
+.wallet-table th.mat-header-cell:first-child {
+    padding-left: 0;
 }
 
-.wallet-table tr.mat-row.user-row-card:hover {
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* ظل أكبر عند التمرير */
+.wallet-table th.mat-header-cell:last-child {
+    padding-right: 0;
+    text-align: right;
 }
 
-/* تنسيق خلايا البيانات */
+/* Table Rows */
+.wallet-table tr.mat-row {
+    height: 72px;
+    background-color: transparent;
+    border-bottom: 1px solid #f9fafb;
+    transition: background-color 0.2s;
+}
+
+.wallet-table tr.mat-row:hover {
+    background-color: #fafbfc;
+}
+
+.wallet-table tr.mat-row:last-child {
+    border-bottom: none;
+}
+
+/* Table Cells */
 .wallet-table td.mat-cell {
-padding: 10px 10px;
-font-size: 0.95rem;
-border-bottom: none; /* إزالة الخط الفاصل بين الخلايا */
+    padding: 16px;
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    border-bottom: none;
 }
 
-/* لجعل عمود الإجراءات على اليمين */
+.wallet-table td.mat-cell:first-child {
+    padding-left: 0;
+}
+
 .wallet-table td.mat-cell:last-child {
-text-align: right;
+    padding-right: 0;
+    text-align: right;
 }
 
-/* تخصيص الـ Paginator */
-.user-management-panel .custom-paginator {
-background-color: #f7f9fc;
-border-radius: 8px;
-margin-top: 15px;
-padding: 5px 10px;
+/* Paginator Styling */
+.custom-paginator {
+    background-color: transparent !important;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 16px;
+    padding-top: 16px;
+}
+
+.custom-paginator .mat-mdc-paginator-container {
+    justify-content: center;
+    padding: 0;
+    min-height: 56px;
+}
+
+.custom-paginator .mat-mdc-paginator-page-size {
+    display: none;
+}
+
+/* Paginator Buttons */
+.custom-paginator button.mat-mdc-paginator-navigation-first,
+.custom-paginator button.mat-mdc-paginator-navigation-previous,
+.custom-paginator button.mat-mdc-paginator-navigation-next,
+.custom-paginator button.mat-mdc-paginator-navigation-last {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.custom-paginator button:hover:not([disabled]) {
+    background-color: #f3f4f6;
+}
+
+/* Page Numbers */
+.custom-paginator .mat-mdc-paginator-range-label {
+    margin: 0 16px;
+    font-size: 0.875rem;
+    color: #6b7280;
 }

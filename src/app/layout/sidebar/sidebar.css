@@ -1,63 +1,82 @@
-/* src/app/layout/sidebar/sidebar.component.css */
+/* src/app/layout/sidebar/sidebar.css */
 
 .sidebar-container {
-    width: 250px; /* عرض ثابت للقائمة الجانبية */
+    width: 250px;
     min-width: 250px;
-    background-color: white; /* خلفية بيضاء */
+    background-color: #ffffff;
     color: #333;
-    padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); /* ظل خفيف */
+    padding: 24px 0;
+    box-shadow: none;
+    border-right: 1px solid #f0f0f0;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
-/* الشعار */
+/* Logo Section */
 .logo-section {
-    padding: 0 20px 30px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #007bff; /* لون الشعار */
+    padding: 0 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-/* قائمة التنقل */
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* Navigation Menu */
 .nav-menu {
     flex-grow: 1;
+    padding: 0 12px;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
-    padding: 12px 20px;
-    margin: 5px 15px;
+    padding: 12px 16px;
+    margin-bottom: 4px;
     text-decoration: none;
-    color: #555;
-    font-size: 0.95rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 500;
     border-radius: 8px;
-    transition: background-color 0.2s, color 0.2s;
+    transition: all 0.2s ease;
+    gap: 12px;
 }
 
 .nav-item:hover {
-    background-color: #f0f8ff; /* خلفية فاتحة عند المرور بالماوس */
-    color: #007bff;
+    background-color: #f9fafb;
+    color: #4f46e5;
 }
 
-/* تفعيل المسار النشط */
+/* Active Link State */
 .active-link {
-    background-color: #e0f0ff; /* خلفية زرقاء فاتحة للزر النشط */
-    color: #007bff;
+    background-color: #eef2ff;
+    color: #4f46e5;
     font-weight: 600;
 }
 
 .material-icons {
-    margin-right: 15px;
     font-size: 20px;
 }
 
-/* قسم تسجيل الخروج */
+/* Logout Section */
 .logout-section {
-    padding: 20px;
-    border-top: 1px solid #eee;
+    padding: 16px 12px;
+    border-top: 1px solid #f0f0f0;
 }
 
 .logout-button {
@@ -68,14 +87,20 @@
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background-color: #ff4d4d; /* لون أحمر */
-    color: white;
+    background-color: transparent;
+    color: #6b7280;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     gap: 10px;
-    transition: background-color 0.2s;
+    transition: all 0.2s ease;
 }
 
 .logout-button:hover {
-    background-color: #e60000;
+    background-color: #fef2f2;
+    color: #dc2626;
+}
+
+.logout-button .material-icons {
+    font-size: 20px;
 }

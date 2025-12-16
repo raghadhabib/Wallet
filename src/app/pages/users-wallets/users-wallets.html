@@ -1,65 +1,78 @@
+<!-- COPY THIS ENTIRE CODE -->
+<!-- Paste into: src/app/pages/users-wallets/users-wallets.html -->
+
 <div class="page-header">
-  <h2>Users & Wallets</h2>
-  <p>Manage users and their wallet permissions</p>
+  <h2>Users & Wallets</h2>
+  <p>Manage users and their wallet permissions</p>
 </div>
 
-<div class="user-management-panel mat-elevation-z1">
-  <h3>User Management</h3>
-  
-  <div class="search-box">
-    <span class="material-icons search-icon">search</span>
-    <input 
-      type="text" 
-      placeholder="Search" 
-      [(ngModel)]="searchTerm" 
-      (ngModelChange)="onSearch()" 
-    >
-  </div>
-  
-  <div class="table-container">
+<div class="user-management-panel">
+  <h3>User Management</h3>
+  
+  <div class="search-box">
+    <span class="material-icons search-icon">search</span>
+    <input 
+      type="text" 
+      placeholder="Search" 
+      [(ngModel)]="searchTerm" 
+      (ngModelChange)="onSearch()" 
+    >
+  </div>
+  
+  <div class="table-container">
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="loading-spinner-container">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
 
-        <div *ngIf="isLoading" class="loading-spinner-container">
-      <mat-spinner></mat-spinner>
-    </div>
+    <!-- Data Table -->
+    <table mat-table [dataSource]="users" class="wallet-table" *ngIf="!isLoading">
+      <!-- User Column -->
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef>Users</th>
+        <td mat-cell *matCellDef="let user">
+          <div class="user-name">{{ user.walletable.name }}</div>
+          <div class="user-id">{{ user.unique_key }}</div>
+        </td>
+      </ng-container>
 
-        <table mat-table [dataSource]="users" class="wallet-table">
+      <!-- Balance Column -->
+      <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef>Balance</th>
+        <td mat-cell *matCellDef="let user">${{ user.balance | number:'1.2-2' }}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="user">
-        <th mat-header-cell *matHeaderCellDef>Users</th>
-        <td mat-cell *matCellDef="let user">
-          <div class="user-name">{{ user.walletable.name }}</div>
-          <div class="user-id">{{ user.unique_key }}</div>
-        </td>
-      </ng-container>
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let user">
+          <div class="action-icons">
+            <span class="material-icons action-icon" title="Add funds">add_circle_outline</span>
+            <span class="material-icons action-icon" title="View details">visibility</span>
+          </div>
+        </td>
+      </ng-container>
 
-            <ng-container matColumnDef="balance">
-        <th mat-header-cell *matHeaderCellDef>Balance</th>
-        <td mat-cell *matCellDef="let user">${{ user.balance | number:'1.2-2' }}</td>
-      </ng-container>
+      <!-- Table Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    <!-- No Data Message -->
+    <div *ngIf="users.length === 0 && !isLoading" class="no-data-message">
+      No data available
+    </div>
 
-            <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let user">
-          <span class="material-icons action-icon">visibility</span>
-        </td>
-      </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="user-row-card"></tr>
-    </table>
-    
-        <div *ngIf="users.length === 0 && !isLoading" class="no-data-message">
-      لا توجد بيانات لعرضها.
-    </div>
-
-        <mat-paginator
-      [length]="totalItems" 
-      [pageSize]="pageSize"
-      (page)="handlePageEvent($event)"
-      showFirstLastButtons
-      class="custom-paginator"
-    >
-    </mat-paginator>
-
-  </div>
+    <!-- Paginator -->
+    <mat-paginator
+      *ngIf="!isLoading"
+      [length]="totalItems" 
+      [pageSize]="pageSize"
+      [pageIndex]="currentPage - 1"
+      (page)="handlePageEvent($event)"
+      showFirstLastButtons
+      class="custom-paginator"
+    >
+    </mat-paginator>
+  </div>
 </div>

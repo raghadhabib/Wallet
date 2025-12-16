@@ -1,22 +1,58 @@
 /* src/app/layout/main-layout/main-layout.component.css */
 
-/* هيكل الصفحة الرئيسية: Sidebar على اليسار والمحتوى على اليمين */
 .main-wrapper {
   display: flex;
-  height: 100vh; /* لملء ارتفاع الشاشة */
-  background-color: #f7f9fc; /* لون خلفية فاتح للمحتوى */
+  height: 100vh;
+  background-color: #fafbfc;
+  overflow: hidden;
 }
 
-/* القسم الذي سيحتوي على الهيدر والمحتوى الديناميكي */
 .content-wrapper {
-  flex-grow: 1; /* يشغل المساحة المتبقية */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-/* تنسيق المساحة الداخلية للمحتوى */
 .main-content {
-  padding: 20px;
+  padding: 32px 40px;
   flex-grow: 1;
-  overflow-y: auto; /* لتمكين التمرير إذا كان المحتوى طويلاً */
+  overflow-y: auto;
+  background-color: #fafbfc;
+}
+
+/* Scrollbar Styling */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    flex-direction: column;
+  }
+  
+  .sidebar-container {
+    width: 100%;
+    min-width: auto;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
 }
