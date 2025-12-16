@@ -1,17 +1,19 @@
-
 html, body {
     margin: 0;
     padding: 0;
     height: 100%; 
     width: 100%;
+     --mat-table-background-color :white;
+     --mat-table-row-item-outline-color : #e2e8f0;
 }
 app-root {
     display: block; 
     height: 100%;
 }
-html, body { height: 100%; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+body, body th , body td {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif ;
+ 
 }
 
 
