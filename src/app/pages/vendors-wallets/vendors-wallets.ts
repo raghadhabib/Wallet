@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // For *ngIf and Pipes
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { UserService } from '../../core/services/user.service';
-
-// Import these Material Modules
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-vendors-wallets',
-  templateUrl: './vendors-wallets.html',
+  standalone: true,
   imports: [
     CommonModule,
     MatTableModule,
@@ -20,14 +19,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule
   ],
+  templateUrl: './vendors-wallets.html',
   styleUrls: ['./vendors-wallets.css']
 })
 export class VendorsWalletsComponent implements OnInit {
-  displayedColumns: string[] = ['users', 'balance', 'actions']; // Matches the image headers
+  displayedColumns: string[] = ['users', 'balance', 'actions'];
   vendors: any[] = [];
   isLoading = false;
+  
+  // Pagination properties
+  totalItems = 0;
+  pageSize = 10;
+  currentPage = 1;
 
   constructor(private userService: UserService) {}
 
@@ -37,16 +43,24 @@ export class VendorsWalletsComponent implements OnInit {
 
   loadVendors() {
     this.isLoading = true;
-    this.userService.getVendors().subscribe({
+    this.userService.getVendors(this.currentPage, this.pageSize).subscribe({
       next: (res) => {
         this.vendors = res.data.wallets.data;
+        this.totalItems = res.data.wallets.total;
         this.isLoading = false;
       },
       error: () => this.isLoading = false
     });
   }
 
-  onSettleMoney(vendor: any) {
-    console.log('Settling money for:', vendor.walletable.name);
+  onPageChange(event: PageEvent) {
+    this.currentPage = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.loadVendors();
   }
+
+  onSettleMoney(vendor: any) {
+    console.log('Settling money for:', vendor.walletable?.name);
+  }
+ 
 }

@@ -1,13 +1,69 @@
-.vendor-name {
+/* Reusing card style from Transactions */
+.vendor-panel {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.panel-title {
+  font-size: 1.125rem;
+  color: #1a1a1a;
+  margin-bottom: 20px;
   font-weight: 600;
-  color: #374151;
-  font-size: 0.95rem;
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 14px;
+    /* margin-bottom: 24px; */
+    background-color: #ffffff;
+    transition: border-color 0.2s;
+}
+
+.search-box:focus-within {
+    border-color: #4f46e5;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 0 10px;
+    background-color: transparent;
+    font-size: 0.875rem;
+    color: #1a1a1a;
+}
+
+.search-box input::placeholder {
+    color: #9ca3af;
+}
+
+.search-box .search-icon {
+    color: #9ca3af;
+    font-size: 20px;
+}
+/* Table Text Styling */
+.vendor-name {
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 0.875rem;
+  
+}
+.mdc-data-table__cell{
+    padding: 0.625rem 1.25rem !important;
 }
 
 .vendor-key {
   color: #9ca3af;
   font-size: 0.8rem;
-  text-transform: uppercase;
 }
 
 .balance-amount {
@@ -15,15 +71,23 @@
   color: #111827;
 }
 
-.data-table {
-  width: 100%;
-  border: 1px solid #f3f4f6;
-  border-radius: 8px;
-}
+/* Column Alignment */
 
-/* Primary Button Styling to match the blue in image */
-.mat-flat-button.mat-primary {
+
+.settle-btn {
   background-color: #2563eb !important;
   border-radius: 6px;
-  padding: 0 20px;
+  font-weight: 500;
+}
+
+.sort-icon {
+  font-size: 16px;
+  margin-left: 4px;
+  color: #9ca3af;
+}
+
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
 }
