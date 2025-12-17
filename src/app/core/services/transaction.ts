@@ -9,8 +9,15 @@ export interface Transaction {
   type: string; // مثل 'Normal', 'Charge', 'Settlement'
   amount: number;
   created_at: string; // التاريخ والوقت
-
-  // ⬅️ إضافة حقول أسماء المرسل والمستقبل لتطابق الصورة
+  action_datetime: string;
+  sender_wallet?: {
+    name: string;
+    walletable?: { name: string };
+  };
+  recipient_wallet?: {
+    name: string;
+    walletable?: { name: string };
+  };
   from_wallet_id: number;
   to_wallet_id: number;
   from_name: string; // اسم المرسل (مثال: maha)

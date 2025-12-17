@@ -38,7 +38,19 @@
         <th mat-header-cell *matHeaderCellDef>Transactions <span class="material-icons sort-icon">swap_vert</span></th>
         <td mat-cell *matCellDef="let transaction">
           <div class="transaction-id">{{ transaction.id }}</div>
+          <div class="transaction-details">
+      <span class="sender-name">
+        {{ transaction.sender_wallet?.name || transaction.from_name }}
+      </span>
+
+      <span class="material-icons detail-arrow">arrow_forward</span>
+
+      <span class="recipient-name">
+        {{ transaction.recipient_wallet?.name || transaction.to_name }}
+      </span>
+    </div>
         </td>
+        
       </ng-container>
 
       <ng-container matColumnDef="details">
@@ -54,11 +66,11 @@
         <th mat-header-cell *matHeaderCellDef>Date</th>
         <td mat-cell *matCellDef="let transaction">
           <div class="transaction-date-main">
-            {{ serverDateTime | date:'d, MMM, y' }}
+      {{ transaction.action_datetime | date:'d, MMM, y' }}
           </div>
           <div class="transaction-time">
-            {{ serverDateTime | date:'h:mm a' }}
-          </div>
+      {{ transaction.action_datetime | date:'h:mm a' }}
+            </div>
         </td>
       </ng-container>
 

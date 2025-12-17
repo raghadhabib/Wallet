@@ -68,43 +68,61 @@
     color: #6b7280 !important;
     font-size: 0.875rem;
     text-transform: uppercase;
-    text-align:center;
+    
 }
 
 .data-table td {
     color: #1a1a1a;
     font-size: 0.875rem;
-    padding: 16px 8px !important; 
-    vertical-align: middle;
-    text-align:center;
+    padding: 0.625rem 1.25rem !important;
+    
 }
 
 /* Custom Columns Styling */
 .transaction-id {
     font-weight: 500;
     color: #1a1a1a;
-    text-align:center;
+    
+}
+/* src/app/pages/transactions/transactions/transactions.css */
+
+.transaction-details {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center horizontally in the cell */
+    gap: 8px;
+    font-size: 0.9rem;
 }
 
+.detail-arrow {
+    font-size: 16px;
+    color: #9ca3af; /* Soft gray for the arrow */
+    vertical-align: middle;
+}
+
+.sender-name, .recipient-name {
+    font-weight: 500;
+    color: #374151; /* Dark gray for names */
+}
 /* From -> To details */
 .transaction-details {
     color: #6b7280;
     font-size: 0.875rem;
-    text-align:center;
+    
 }
 
 /* Date */
 .transaction-date {
     color: #9ca3af;
     font-size: 0.8rem;
-    text-align:center;
+    
 }
 
 /* Amount (to match the green color in the image) */
 .transaction-amount {
     color: #156b4e; /* Tailwind green-500 */
     font-weight: 600;
-    text-align:center;
+   
 }
 
 .mat-header-cell:last-child, .mat-cell:last-child {

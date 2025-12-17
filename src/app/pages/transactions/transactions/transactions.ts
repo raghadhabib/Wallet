@@ -25,7 +25,6 @@ export class TransactionsComponent implements OnInit {
   
   transactions: Transaction[] = [];
   isLoading: boolean = false;
-  serverDateTime: string | null = null;
   totalItems: number = 0;
   currentPage: number = 1;
   pageSize: number = 10;
@@ -52,11 +51,11 @@ export class TransactionsComponent implements OnInit {
     this.TransactionService.getTransactions(this.currentPage, this.pageSize, transactionType).subscribe({
       next: (response) => {
         const receivedData = response.data.transactions;
-        this.transactions = receivedData.data;
-        this.totalItems = receivedData.total || 0;
-        this.serverDateTime = response.current_datetime;
+        this.transactions = response.data.transactions.data; 
+        this.totalItems = response.data.transactions.total;
         this.isLoading = false;
         console.log('Transactions Data Received:', this.transactions);
+       
       },
       error: (err) => {
         console.error('Failed to fetch transactions:', err);

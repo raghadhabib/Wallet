@@ -71,12 +71,17 @@
     font-weight: 500;
     color: #1a1a1a;
     font-size: 0.875rem;
+   
 }
 
 .user-id {
     font-size: 0.75rem;
     color: #9ca3af;
     margin-top: 4px;
+   
+}
+.mdc-data-table__cell{
+    padding: 0.625rem 1.25rem !important;;
 }
 
 /* Action Icons Container */
