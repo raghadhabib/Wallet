@@ -5,6 +5,14 @@ import { Observable } from 'rxjs';
 
 // نموذج مبسط لرد الـ API
 
+export interface VendorWallet {
+  id: string;
+  balance: number;
+  unique_key: string;
+  walletable: {
+    name: string;
+  };
+}
 
 export interface Walletable {
     id: number;
@@ -64,5 +72,10 @@ export class UserService {
     // الـ HttpInterceptor سيضيف التوكن تلقائياً هنا
     return this.http.get<UserWalletListResponse>(url, { params });
   }
+  getVendors(page: number = 1, pageSize: number = 10): Observable<UserWalletListResponse> {
+  const url = `${environment.apiUrl}/wallets/getVendorWalletsList`; // Verify this endpoint
+  const params = { page: page.toString(), page_size: pageSize.toString() };
+  return this.http.get<UserWalletListResponse>(url, { params });
+}
   
 }

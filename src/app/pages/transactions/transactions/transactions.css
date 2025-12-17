@@ -88,21 +88,20 @@
 
 .transaction-details {
     display: flex;
-    align-items: center;
-    justify-content: center; /* Center horizontally in the cell */
     gap: 8px;
     font-size: 0.9rem;
 }
 
 .detail-arrow {
     font-size: 16px;
-    color: #9ca3af; /* Soft gray for the arrow */
-    vertical-align: middle;
+   color: #374151; /* Soft gray for the arrow */
+    
 }
 
 .sender-name, .recipient-name {
     font-weight: 500;
-    color: #374151; /* Dark gray for names */
+     /* Dark gray for names */
+    color: #9ca3af
 }
 /* From -> To details */
 .transaction-details {

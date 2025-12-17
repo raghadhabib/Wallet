@@ -1,0 +1,29 @@
+.vendor-name {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.vendor-key {
+  color: #9ca3af;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.balance-amount {
+  font-weight: 700;
+  color: #111827;
+}
+
+.data-table {
+  width: 100%;
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+}
+
+/* Primary Button Styling to match the blue in image */
+.mat-flat-button.mat-primary {
+  background-color: #2563eb !important;
+  border-radius: 6px;
+  padding: 0 20px;
+}

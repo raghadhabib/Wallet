@@ -35,23 +35,22 @@
     <table mat-table [dataSource]="transactions" class="data-table" *ngIf="!isLoading">
       
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Transactions <span class="material-icons sort-icon">swap_vert</span></th>
-        <td mat-cell *matCellDef="let transaction">
-          <div class="transaction-id">{{ transaction.id }}</div>
-          <div class="transaction-details">
+  <th mat-header-cell *matHeaderCellDef>Transactions <span class="material-icons sort-icon">swap_vert</span></th>
+  <td mat-cell *matCellDef="let transaction">
+    <div class="transaction-id">{{ transaction.id }}</div>
+    <div class="transaction-details">
       <span class="sender-name">
-        {{ transaction.sender_wallet?.name || transaction.from_name }}
+        {{ transaction.sender_wallet?.name || transaction.sender_wallet?.walletable?.name || transaction.from_name }}
       </span>
 
       <span class="material-icons detail-arrow">arrow_forward</span>
 
       <span class="recipient-name">
-        {{ transaction.recipient_wallet?.name || transaction.to_name }}
+        {{ transaction.recipient_wallet?.name || transaction.recipient_wallet?.walletable?.name || transaction.to_name }}
       </span>
     </div>
-        </td>
-        
-      </ng-container>
+  </td>
+</ng-container>
 
       <ng-container matColumnDef="details">
         <th mat-header-cell *matHeaderCellDef></th>
