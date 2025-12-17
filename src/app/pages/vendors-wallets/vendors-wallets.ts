@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-vendors-wallets',
@@ -20,7 +21,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatIconModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FormsModule
   ],
   templateUrl: './vendors-wallets.html',
   styleUrls: ['./vendors-wallets.css']
@@ -34,7 +36,9 @@ export class VendorsWalletsComponent implements OnInit {
   totalItems = 0;
   pageSize = 10;
   currentPage = 1;
-
+  allVendors: any[] = []; // Store original data
+  filteredVendors: any[] = [];
+  searchQuery: string = '';
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -46,13 +50,23 @@ export class VendorsWalletsComponent implements OnInit {
     this.userService.getVendors(this.currentPage, this.pageSize).subscribe({
       next: (res) => {
         this.vendors = res.data.wallets.data;
+        this.applyFilter();
         this.totalItems = res.data.wallets.total;
         this.isLoading = false;
       },
       error: () => this.isLoading = false
     });
   }
-
+  applyFilter() {
+    const query = this.searchQuery.toLowerCase().trim();
+    if (!query) {
+      this.filteredVendors = this.allVendors;
+    } else {
+      this.filteredVendors = this.allVendors.filter(v => 
+        v.walletable?.name?.toLowerCase().includes(query) || 
+        v.unique_key?.toLowerCase().includes(query)
+      );}}
+    
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex + 1;
     this.pageSize = event.pageSize;

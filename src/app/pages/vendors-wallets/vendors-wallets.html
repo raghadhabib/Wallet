@@ -11,7 +11,8 @@
     <input 
       type="text" 
       placeholder="Search" 
-    
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="applyFilter()"
     >
   </div>
 
@@ -20,7 +21,7 @@
       <mat-spinner diameter="40"></mat-spinner>
     </div>
 
-    <table mat-table [dataSource]="vendors" class="data-table" *ngIf="!isLoading">
+    <table mat-table [dataSource]="filteredVendors" class="data-table" *ngIf="!isLoading">
       <ng-container matColumnDef="users">
         <th mat-header-cell *matHeaderCellDef>
           Users <mat-icon class="sort-icon">swap_vert</mat-icon>

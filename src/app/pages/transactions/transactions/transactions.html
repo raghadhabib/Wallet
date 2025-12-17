@@ -38,7 +38,7 @@
   <th mat-header-cell *matHeaderCellDef>Transactions <span class="material-icons sort-icon">swap_vert</span></th>
   <td mat-cell *matCellDef="let transaction">
     <div class="transaction-id">{{ transaction.id }}</div>
-    <div class="transaction-details">
+    <div class="transaction-details" *ngIf="activeTab === 'Normal'">
       <span class="sender-name">
         {{ transaction.sender_wallet?.name || transaction.sender_wallet?.walletable?.name || transaction.from_name }}
       </span>
