@@ -45,27 +45,37 @@ export class VendorsWalletsComponent implements OnInit {
     this.loadVendors();
   }
 
-  loadVendors() {
-    this.isLoading = true;
-    this.userService.getVendors(this.currentPage, this.pageSize).subscribe({
-      next: (res) => {
-        this.vendors = res.data.wallets.data;
-        this.applyFilter();
-        this.totalItems = res.data.wallets.total;
-        this.isLoading = false;
-      },
-      error: () => this.isLoading = false
-    });
+ loadVendors() {
+  this.isLoading = true;
+  this.userService.getVendors(this.currentPage, this.pageSize).subscribe({
+    next: (res) => {
+      // Correctly mapping based on your UserWalletListResponse interface
+      this.vendors = res.data.wallets.data; 
+      
+      // CRITICAL: Update the dataSource used in HTML
+      this.filteredVendors = [...this.vendors]; 
+      
+      this.totalItems = res.data.wallets.total;
+      this.isLoading = false;
+    },
+    error: (err) => {
+      this.isLoading = false;
+      console.error(err);
+    }
+  });
+}
+ applyFilter() {
+  if (!this.searchQuery) {
+    this.filteredVendors = [...this.vendors];
+    return;
   }
-  applyFilter() {
-    const query = this.searchQuery.toLowerCase().trim();
-    if (!query) {
-      this.filteredVendors = this.allVendors;
-    } else {
-      this.filteredVendors = this.allVendors.filter(v => 
-        v.walletable?.name?.toLowerCase().includes(query) || 
-        v.unique_key?.toLowerCase().includes(query)
-      );}}
+  
+  const query = this.searchQuery.toLowerCase().trim();
+  this.filteredVendors = this.vendors.filter(vendor => 
+    vendor.walletable?.name?.toLowerCase().includes(query) ||
+    vendor.unique_key?.toLowerCase().includes(query)
+  );
+}
     
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex + 1;
