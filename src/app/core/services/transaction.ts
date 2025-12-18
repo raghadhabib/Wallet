@@ -72,21 +72,17 @@ export class TransactionService {
    * @param pageSize - حجم الصفحة
    * @param uiType - نوع المعاملة كما يظهر في الـ UI (Normal, Charges, Settlements)
    */
-  getTransactions(page: number = 1, pageSize: number = 10, uiType: string = 'Normal'): Observable<TransactionListResponse> {
-    
-    // 🛑 تحديث مسار API لنقطة النهاية الصحيحة
+ getTransactions(page: number = 1, pageSize: number = 10, uiType: string = 'Normal'): Observable<TransactionListResponse> {
     const url = `${this.baseUrl}/transactions/getMerchantTransactionsList`; 
-    
-    // 🛑 استخدام القيمة المترجمة لنوع المعاملة
     const apiType = this.getTypeMapping(uiType);
-
+    
+    // If the user is a vendor, the backend usually expects their specific wallet context
     const params = {
       page: page.toString(),
       page_size: pageSize.toString(),
-      type: apiType // إرسال النوع المترجم (مثلاً: 'transfer')
+      type: apiType
     };
 
-    // الـ HttpInterceptor سيضيف التوكن تلقائياً هنا
     return this.http.get<TransactionListResponse>(url, { params });
-  }
+}
 }
