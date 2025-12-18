@@ -23,7 +23,7 @@
 .panel-title {
     font-size: 1.125rem;
     color: #1a1a1a;
-    margin-top: 32px; /* مسافة بعد التبويبات */
+    margin-top: 32px;
     margin-bottom: 20px;
     font-weight: 600;
 }
@@ -38,7 +38,7 @@
     padding: 10px 18px;
     background-color: transparent;
     border: none;
-    border-bottom: 3px solid transparent; /* لإظهار الخط السفلي عند التفعيل */
+    border-bottom: 3px solid transparent;
     color: #6b7280;
     font-weight: 500;
     cursor: pointer;
@@ -84,7 +84,6 @@
     color: #1a1a1a;
     
 }
-/* src/app/pages/transactions/transactions/transactions.css */
 
 .transaction-details {
     display: flex;
@@ -94,15 +93,15 @@
 
 .detail-arrow {
     font-size: 16px;
-   color: #374151; /* Soft gray for the arrow */
+   color: #374151;
     
 }
 
 .sender-name, .recipient-name {
     font-weight: 500;
-     /* Dark gray for names */
     color: #9ca3af
 }
+
 /* From -> To details */
 .transaction-details {
     color: #6b7280;
@@ -119,13 +118,13 @@
 
 /* Amount (to match the green color in the image) */
 .transaction-amount {
-    color: #156b4e; /* Tailwind green-500 */
+    color: #156b4e; 
     font-weight: 600;
    
 }
 
 .mat-header-cell:last-child, .mat-cell:last-child {
-  text-align: right; /* لمحاذاة عنوان 'Amount' والبيانات لليمين */
+  text-align: right;
 }
 
 .sort-icon {

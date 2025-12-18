@@ -23,7 +23,6 @@
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     padding: 10px 14px;
-    /* margin-bottom: 24px; */
     background-color: #ffffff;
     transition: border-color 0.2s;
 }
@@ -50,6 +49,7 @@
     color: #9ca3af;
     font-size: 20px;
 }
+
 /* Table Text Styling */
 .vendor-name {
   font-weight: 500;

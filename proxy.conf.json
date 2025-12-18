@@ -1,14 +1,3 @@
-{
-  "/login": {
-    "target": "https://backoffice-dev-api.mahfza.com/api",
-    "changeOrigin": true
-  },
 
-  "/api": {
-    "target": "https://backoffice-dev-api.mahfza.com/api",
-    "secure": false,
-    "changeOrigin": true
-  }
-}
 
 

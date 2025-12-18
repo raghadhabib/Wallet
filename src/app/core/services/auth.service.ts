@@ -2,22 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'
 import { LoginRequest } from '../models/login-request.model';
-import { tap } from 'rxjs'; // ⬅️ إضافة الاستيراد
+import { tap } from 'rxjs'; 
 
 
 interface AuthUser {
   id: number;
-  authable_type: string; // هذا هو حقل نوع المستخدم
-  // ... باقي الحقول اختيارية
+  authable_type: string;
 } 
 
-// تعريف نموذج مبسط لرد الـ API
+
 export interface LoginResponse {
   data: {
-    token: string; // ⬅️ التوكن موجود هنا
+    token: string; 
     refresh_token: string;
     expires_in: number;
-    auth_users: AuthUser; // ⬅️ نوع المستخدم موجود هنا
+    auth_users: AuthUser; 
     wallet_id: number | null;
   };
   current_datetime: string;
@@ -37,17 +36,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // تعديل الدالة لتقوم بحفظ التوكن ونوع المستخدم
+
  login(credentials: LoginRequest) {
-    // 🛑 2. تعريف الـ payload هنا قبل استخدامه
     const payload = {
       email: credentials.email,
       password: credentials.password,
       login_source: 'web_app'
-      // 💡 أضف هنا أي حقول ثابتة أو إضافية مثل: login_source: 'web_app' 
     };
 
-    // يجب تحديد نوع الرد لتمكين استخدام .pipe و tap
+  
     return this.http.post<LoginResponse>(this.loginUrl, payload).pipe(
       tap((response) => {
           const token = response.data.token;
@@ -67,16 +64,13 @@ export class AuthService {
         return localStorage.getItem(this.AUTH_TOKEN_KEY);
   }
   isLoggedIn(): boolean {
-    // !!this.getToken() تحول القيمة إلى true إذا وُجد التوكن وإلى false إذا كان null
     return !!this.getToken();
   }
 
   
   logout(): void {
-    // يفضل مسح المفاتيح المحددة بدلاً من مسح كل شيء لتجنب مسح بيانات تطبيقات أخرى
     localStorage.removeItem(this.AUTH_TOKEN_KEY); 
-    localStorage.removeItem(this.USER_TYPE_KEY); 
-    // يمكنك أيضاً استخدام localStorage.clear(); إذا كنت متأكداً من عدم وجود بيانات أخرى مهمة.
+    localStorage.removeItem(this.USER_TYPE_KEY);
   }
   } 
 

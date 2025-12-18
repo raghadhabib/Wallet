@@ -11,17 +11,15 @@ export const routes: Routes = [
   {
     path: 'app',
     component: MainLayoutComponent,
-    canActivate: [authGuard], // حماية المسار بـ Guard
+    canActivate: [authGuard], 
     children: [
       { path: 'users', component: UsersWalletsComponent },
-      // ⬅️ إضافة مسار المعاملات
       { path: 'transactions', component: TransactionsComponent }, 
-      // مسار افتراضي عند الدخول لـ /app
       { path: '', redirectTo: 'users', pathMatch: 'full' }, 
-       { path: 'vendors', component: VendorsWalletsComponent },
+      { path: 'vendors', component: VendorsWalletsComponent },
     ],
   },
   { path: '', redirectTo: 'app', pathMatch: 'full' },
  
-  { path: '**', redirectTo: 'app' } // لأي مسار غير معرف
+  { path: '**', redirectTo: 'app' } 
 ];

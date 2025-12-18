@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common'; // إضافة DatePipe و CurrencyPipe
+import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { TransactionService, Transaction } from '../../../core/services/transaction'; // سيتم إنشاء الخدمة قريباً
+import { TransactionService, Transaction } from '../../../core/services/transaction'; 
 
 @Component({
   selector: 'app-transactions',
@@ -15,9 +15,7 @@ import { TransactionService, Transaction } from '../../../core/services/transact
     MatTableModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    DatePipe, // استخدامه في الـ HTML لتنسيق التاريخ
-    CurrencyPipe // استخدامه لتنسيق المبلغ
-  ],
+    DatePipe],
   templateUrl: './transactions.html',
   styleUrls: ['./transactions.css']
 })
@@ -29,11 +27,9 @@ export class TransactionsComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 10;
   
-  // الأعمدة التي سيتم عرضها في الجدول.
-  // 'id' للمعاملة، 'date' و 'amount'
+ 
   displayedColumns: string[] = ['id', 'date', 'amount'];
 
-  // لتحديد التبويب النشط: Normal, Charges, Settlements
   activeTab: 'Normal' | 'Charges' | 'Settlements' = 'Normal';
 
   constructor(private TransactionService: TransactionService) {}
@@ -42,10 +38,8 @@ export class TransactionsComponent implements OnInit {
     this.fetchTransactions();
   }
 
-  // جلب المعاملات من الخدمة
   fetchTransactions(): void {
     this.isLoading = true;
-    // تحديد نوع المعاملات المطلوب جلبها بناءً على التبويب النشط
     const transactionType = this.activeTab; 
 
     this.TransactionService.getTransactions(this.currentPage, this.pageSize, transactionType).subscribe({
@@ -64,14 +58,14 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  // تغيير التبويب واستدعاء جلب البيانات
+
   onTabChange(tab: 'Normal' | 'Charges' | 'Settlements'): void {
     this.activeTab = tab;
-    this.currentPage = 1; // إرجاع إلى الصفحة الأولى عند تغيير التبويب
+    this.currentPage = 1; 
     this.fetchTransactions();
   }
 
-  // معالجة تغيير الصفحة في Paginator
+  // Paginator
   handlePageEvent(e: PageEvent): void {
     this.currentPage = e.pageIndex + 1;
     this.pageSize = e.pageSize;

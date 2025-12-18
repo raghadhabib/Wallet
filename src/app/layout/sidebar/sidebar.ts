@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive} from '@angular/router'; // للتنقل وتفعيل زر المسار النشط
+import { Router, RouterLink, RouterLinkActive} from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  // استيراد CommonModule لأوامر *ngIf/ngFor و RouterLink/RouterLinkActive للتنقل
   imports: [CommonModule, RouterLink, RouterLinkActive], 
   templateUrl: './sidebar.html',
   styleUrls: ['./sidebar.css']
@@ -44,17 +43,16 @@ export class SidebarComponent implements OnInit {
       ];
     }}
 
-  // تعريف قائمة الروابط (سنستخدمها لإنشاء الـ Menu)
+
  
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  // دالة لتسجيل الخروج (Logout)
+
 onLogout(): void {
-    // 1. مسح التوكن ونوع المستخدم من Local Storage
-    this.authService.logout();
-    
-    // 🛑 2. إعادة التوجيه إلى صفحة الدخول (Login)
-    this.router.navigate(['/login']); 
-  }
+
+  this.authService.logout();
+
+this.router.navigate(['/login']); 
+}
 }

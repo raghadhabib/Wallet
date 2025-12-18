@@ -14,5 +14,5 @@ import { SidebarComponent } from '../sidebar/sidebar';
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css']
 })
-export class MainLayoutComponent {  // Component logic can be added here if needed
+export class MainLayoutComponent { 
 }

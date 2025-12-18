@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
-// نموذج مبسط لرد الـ API
-
 export interface VendorWallet {
   id: string;
   balance: number;
@@ -16,21 +14,18 @@ export interface VendorWallet {
 
 export interface Walletable {
     id: number;
-    name: string; // ⬅️ هذا هو الاسم الفعلي للمستخدم
+    name: string; 
     created_at: string;
     updated_at: string;
     deleted_at: string | null;
 }
 
 export interface UserWallet {
-  id: string;
-  // 🛑 حذف name القديم وإضافة الحقول الجديدة
-  // name: string; // لا حاجة لهذا الحقل هنا
-  balance: number;
-  // إضافة الحقل المتداخل الجديد
-  walletable: Walletable; // ⬅️ هذا هو الحقل الجديد
-walletable_type: string; // مثل "users"
-  unique_key: string; // مثل "STUDENT-6216-..."
+id: string;
+balance: number;
+walletable: Walletable; 
+walletable_type: string; 
+unique_key: string; 
 }
 
 export interface WalletsResponse {
@@ -39,10 +34,10 @@ export interface WalletsResponse {
   total: number;
 }
 
-// 🛑 تعديل الهيكل الرئيسي لرد جلب المحافظ (Wallets)
+
 export interface UserWalletListResponse {
   data: {
-    wallets: WalletsResponse; // ⬅️ الآن حقل 'wallets' هو المطلوب داخل 'data'
+    wallets: WalletsResponse; 
   };
   current_datetime: string;
 }
@@ -51,14 +46,12 @@ export interface UserWalletListResponse {
   providedIn: 'root'
 })
 export class UserService {
-  // استخدام الـ API URL من environment
+
   private baseUrl = `${environment.apiUrl}/wallets`; 
 
   constructor(private http: HttpClient) {}
 
   /**
-   * جلب قائمة المستخدمين من API.
-   * مسار API: /api/wallets/getUserWalletsList?page=1&page_size=10
    * @param page - رقم الصفحة
    * @param pageSize - حجم الصفحة
    */
@@ -69,7 +62,7 @@ export class UserService {
       page_size: pageSize.toString()
     };
 
-    // الـ HttpInterceptor سيضيف التوكن تلقائياً هنا
+
     return this.http.get<UserWalletListResponse>(url, { params });
   }
   getVendors(page: number = 1, pageSize: number = 10): Observable<UserWalletListResponse> {
