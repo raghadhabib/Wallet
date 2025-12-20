@@ -1,0 +1,42 @@
+.modal-container { padding: 24px; font-family: 'Inter', sans-serif; }
+.modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.icon-circle { 
+    width: 40px; height: 40px; background: #f0f7ff; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; color: #4f46e5;
+}
+.close-btn { background: none; border: none; font-size: 24px; color: #9ca3af; cursor: pointer; }
+
+.modal-title { font-size: 20px; font-weight: 700; color: #111827; margin: 0 0 16px; }
+
+.vendor-info { 
+    background: #F1F4F9; padding: 12px; border-radius: 8px; 
+    display: flex; justify-content: space-between; margin-bottom: 24px;
+}
+.vendor-info .vendor-name { color: #10b981; font-weight: 600; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 8px; }
+
+.custom-input, .custom-textarea {
+    width:90%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;
+}
+.custom-textarea { height: 80px; resize: none; }
+
+.upload-area {
+    border: 1px dashed #e5e7eb; border-radius: 8px; padding: 20px;
+    text-align: center; cursor: pointer; background: #fafafa;
+}
+.upload-icon { color: #6b7280; margin-bottom: 8px; }
+.blue-text { color: #4f46e5; font-weight: 600; }
+.file-hint { font-size: 12px; color: #9ca3af; margin-top: 4px; }
+
+.modal-actions { display: flex; gap: 12px; margin-top: 24px; }
+.btn-cancel { 
+    flex: 1; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; 
+    background: white; color: #374151; font-weight: 600; cursor: pointer;
+}
+.btn-settle { 
+    flex: 1; padding: 12px; border: none; border-radius: 8px; 
+    background: linear-gradient(90deg, #93a5f5, #7a8ef2); color: white; font-weight: 600; cursor: pointer;
+}
+.btn-settle:disabled { opacity: 0.6; cursor: not-allowed; }

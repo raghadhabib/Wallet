@@ -124,3 +124,19 @@ body, body th , body td {
     font-size: 0.875rem;
     color: #6b7280;
 }
+
+/* target the snackbar container to remove the default background and shadow */
+.custom-toast-container.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove default padding so your custom component fills the space */
+.custom-toast-container .mdc-snackbar__label {
+  padding: 0 !important;
+}
+
+/* Ensure the host element doesn't add extra width/background */
+.custom-toast-container {
+  background: transparent !important;
+}
