@@ -140,3 +140,19 @@ body, body th , body td {
 .custom-toast-container {
   background: transparent !important;
 }
+
+
+
+.error-snackbar {
+  background-color: #fef2f2 !important; /* Light red background */
+  color: #991b1b !important; /* Dark red text */
+  border-left: 5px solid #ef4444; /* Bright red border-left */
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px -1px rgba(222, 185, 185, 0.1);
+}
+
+/* To add the "error" text and icon style specifically */
+.error-snackbar .mat-simple-snackbar-action {
+  color: #991b1b !important;
+  font-weight: bold;
+}

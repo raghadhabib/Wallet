@@ -79,4 +79,16 @@ export class TransactionService {
 
     return this.http.get<TransactionListResponse>(url, { params });
 }
+
+// Inside TransactionService class
+executeCredit(data: any): Observable<any> {
+  const url = `${this.baseUrl}/transactions/execute`; // Replace with your actual endpoint
+  return this.http.post(url, {
+    to_wallet_id: data.to,
+    amount: data.amount,
+    reason: data.reason,
+    type: 'credit' // or 'transfer' depending on logic
+  });
+}
+
 }

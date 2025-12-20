@@ -44,11 +44,13 @@
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let user">
           <div class="action-icons">
-            <span class="material-icons action-icon" title="Add funds">add_circle_outline</span>
-            <span class="material-icons action-icon" title="View details">visibility</span>
+            <img src="../../../assets/images/wallet.svg" class=" action-icon" title="Add funds" (click)="openWalletActions(user)">
+            <span class="material-icons" [routerLink]="['/app/users/details', user.walletable.id]">visibility</span>
+           
           </div>
         </td>
       </ng-container>
+
 
       <!-- Table Rows -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

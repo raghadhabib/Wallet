@@ -1,0 +1,27 @@
+<div class="profile-container">
+  <div class="header-section">
+    <a routerLink="/app/users" class="back-link">
+      <span class="material-icons">chevron_left</span>
+      <h2>Users Profile</h2>
+    </a>
+  </div>
+
+  <div class="user-info-grid">
+    <div class="info-group">
+      <label>User Name</label>
+      <p class="user-name">{{ userName }}</p>
+    </div>
+    <div class="info-group">
+      <label>Balance</label>
+      <p class="balance-text">{{ balance }} $</p>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="transactions.length === 0">
+    <div class="illustration-container">
+      <img src="assets/images/no-transactions.png" alt="No Transactions">
+    </div>
+    <h3>No transactions yet</h3>
+    <p>Once you start sending or receiving payments, your transaction history will appear here for easy tracking and management.</p>
+  </div>
+</div>

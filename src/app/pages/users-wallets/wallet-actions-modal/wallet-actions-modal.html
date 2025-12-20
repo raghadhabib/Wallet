@@ -1,0 +1,43 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <div class="header-icon">
+      <img src="../../../../assets/images/wallet.svg">
+    </div>
+    <button class="close-btn" (click)="onCancel()">&times;</button>
+  </div>
+
+  <h2 class="modal-title">Wallet Actions</h2>
+
+  <div class="balance-strip">
+    <span>Current Balance:</span>
+    <span class="balance-amount">{{ data.wallet.balance }} $</span>
+  </div>
+
+  <form [formGroup]="walletForm" (ngSubmit)="onExecute()" class="modal-body">
+    <div class="row">
+      <div class="form-group">
+        <label>From</label>
+        <input type="text" formControlName="from" class="custom-input disabled">
+      </div>
+      <div class="form-group">
+        <label>To</label>
+        <input type="text" formControlName="to" placeholder="Enter Wallet ID" class="custom-input">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Amounts</label>
+      <input type="number" formControlName="amount" placeholder="Write the amount" class="custom-input">
+    </div>
+
+    <div class="form-group">
+      <label>Reason</label>
+      <textarea formControlName="reason" placeholder="Enter Reason" class="custom-textarea"></textarea>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-cancel" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="btn-execute" [disabled]="walletForm.invalid">Execute Credit</button>
+    </div>
+  </form>
+</div>
