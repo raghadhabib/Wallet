@@ -18,8 +18,9 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    // This gets the :id from the URL
     this.userId = this.route.snapshot.paramMap.get('id');
-    // Fetch user details from your UserService here using this.userId
+    console.log('Viewing profile for user ID:', this.userId);
   }
 }

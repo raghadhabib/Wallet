@@ -151,6 +151,7 @@ body, body th , body td {
   box-shadow: 0 4px 6px -1px rgba(222, 185, 185, 0.1);
 }
 
+
 /* To add the "error" text and icon style specifically */
 .error-snackbar .mat-simple-snackbar-action {
   color: #991b1b !important;
