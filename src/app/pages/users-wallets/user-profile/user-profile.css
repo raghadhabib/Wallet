@@ -66,3 +66,90 @@
   width: 200px;
   opacity: 0.8;
 }
+
+.back-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+}
+
+.profile-summary {
+  display: flex;
+  gap: 100px;
+  margin-bottom: 40px;
+}
+
+.label {
+  color: #9ca3af;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.balance-amount {
+  color: #10b981; /* Green color for balance */
+}
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-table th {
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 15px;
+  color: #374151;
+}
+
+.profile-table td {
+  padding: 15px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tx-direction {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.empty-img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 24px;
+  opacity: 0.6; /* Softens the look */
+}
+
+.empty-state-container h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.empty-state-container p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  max-width: 400px;
+  line-height: 1.5;
+}

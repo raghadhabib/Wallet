@@ -45,7 +45,11 @@
         <td mat-cell *matCellDef="let user">
           <div class="action-icons">
             <img src="../../../assets/images/wallet.svg" class=" action-icon" title="Add funds" (click)="openWalletActions(user)">
-            <span class="material-icons" [routerLink]="['/app/users/details', user.walletable.id]">visibility</span>
+            <span class="material-icons action-icon-view" 
+      style="cursor: pointer; color: #d7d8e5;" 
+      (click)="viewProfile(user)">
+    visibility
+</span>
            
           </div>
         </td>

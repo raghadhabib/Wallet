@@ -77,7 +77,8 @@
    
 }
 .mdc-data-table__cell{
-    padding: 0.625rem 1.25rem !important;;
+    padding: 0.625rem 1.25rem !important;
+    font-weight: 600;
 }
 
 /* Action Icons Container */

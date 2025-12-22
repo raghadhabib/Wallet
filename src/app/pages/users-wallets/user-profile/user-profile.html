@@ -1,27 +1,56 @@
-<div class="profile-container">
-  <div class="header-section">
+<div class="container" *ngIf="!isLoading && walletData">
+  <div class="header-nav">
     <a routerLink="/app/users" class="back-link">
-      <span class="material-icons">chevron_left</span>
-      <h2>Users Profile</h2>
+      <span class="material-icons">chevron_left</span> Users Profile
     </a>
   </div>
 
-  <div class="user-info-grid">
-    <div class="info-group">
-      <label>User Name</label>
-      <p class="user-name">{{ userName }}</p>
+  <div class="profile-summary">
+    <div class="info-box">
+      <span class="label">User Name</span>
+      <div class="value">{{ walletData.wallet_name}}</div>
     </div>
-    <div class="info-group">
-      <label>Balance</label>
-      <p class="balance-text">{{ balance }} $</p>
+    <div class="info-box">
+      <span class="label">Balance</span>
+      <div class="value balance-amount">{{ walletData.balance }} $</div>
     </div>
   </div>
 
-  <div class="empty-state" *ngIf="transactions.length === 0">
-    <div class="illustration-container">
-      <img src="assets/images/no-transactions.png" alt="No Transactions">
-    </div>
-    <h3>No transactions yet</h3>
-    <p>Once you start sending or receiving payments, your transaction history will appear here for easy tracking and management.</p>
+  <div class="transaction-section" *ngIf="!isLoading">
+  
+  <div *ngIf="transactions.length > 0; else noTransactions">
+    <table class="profile-table">
+      <thead>
+        <tr>
+          <th>Transactions <span class="material-icons">swap_vert</span></th>
+          <th>Date</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tx of transactions">
+          <td>
+            <div class="tx-id">{{ tx.id }}</div>
+            <div class="tx-direction">→ {{ tx.to_name || tx.recipient_name }}</div>
+          </td>
+          <td class="tx-date">{{ tx.action_datetime | date:'dd, MMM, yyyy @ hh:mm a' }}</td>
+          <td class="tx-amount" [style.color]="'#156b4e'">${{ tx.amount | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+  <ng-template #noTransactions>
+    <div class="empty-state-container">
+      <img src="assets/images/empty-transactions.svg" alt="No transactions" class="empty-img">
+      <h3>No transactions yet</h3>
+      <p>Once you start sending or receiving payments, your transaction history will appear here for easy tracking and management.</p>
+    </div>
+  </ng-template>
+
+</div>
+</div>
+
+<div *ngIf="isLoading" class="spinner-container">
+  <mat-spinner diameter="50"></mat-spinner>
 </div>

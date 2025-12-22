@@ -98,8 +98,8 @@
 }
 
 .sender-name, .recipient-name {
-    font-weight: 500;
-    color: #9ca3af
+    font-weight: 400;
+    color: #959595;
 }
 
 /* From -> To details */
@@ -146,4 +146,11 @@
     color: #9ca3af;
     padding: 60px 0;
     font-size: 0.95rem;
+}
+
+.transaction-wallet-name {
+    font-size: 0.8rem;
+    color:#959595; /* Gray color */
+    margin-top: 2px;
+    display: block;
 }

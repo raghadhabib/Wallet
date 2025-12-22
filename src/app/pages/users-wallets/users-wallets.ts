@@ -10,7 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog'; // Added 
 import { WalletActionsModalComponent } from './wallet-actions-modal/wallet-actions-modal';
 import { TransactionService } from '../../core/services/transaction'; // Import your transaction service
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RouterModule } from '@angular/router';
+import { Router,RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-users-wallets',
@@ -47,7 +47,8 @@ export class UsersWalletsComponent implements OnInit {
     private userService: UserService,
     private dialog: MatDialog,
     private transactionService: TransactionService ,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -153,5 +154,10 @@ export class UsersWalletsComponent implements OnInit {
     verticalPosition: 'bottom',
     panelClass: ['error-snackbar'] // This class handles the red styling
   });
+}
+
+// src/app/pages/users-wallets/users-wallets.ts
+viewProfile(wallet: any) {
+  this.router.navigate(['/app/users/profile', wallet.id]);
 }
 }

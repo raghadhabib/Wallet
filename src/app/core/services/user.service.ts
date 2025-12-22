@@ -70,5 +70,21 @@ export class UserService {
   const params = { page: page.toString(), page_size: pageSize.toString() };
   return this.http.get<UserWalletListResponse>(url, { params });
 }
-  
+
+// Get specific wallet balance/details
+getUserBalance(walletId: string): Observable<any> {
+  const url = `${environment.apiUrl}/wallets/balance`; 
+  return this.http.get<any>(url, { params: { wallet_id: walletId } });
+}
+
+// Get transactions for this specific wallet
+getUserTransactions(walletId: string, page: number = 0, pageSize: number = 10): Observable<any> {
+  const url = `${environment.apiUrl}/transactions/list`;
+  const params = {
+    page: page.toString(),
+    page_size: pageSize.toString(),
+    wallet_id: walletId
+  };
+  return this.http.get<any>(url, { params });
+}
 }
