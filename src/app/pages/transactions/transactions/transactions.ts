@@ -20,6 +20,8 @@ import { TransactionService, Transaction } from '../../../core/services/transact
   styleUrls: ['./transactions.css']
 })
 export class TransactionsComponent implements OnInit {
+
+  isVendor: boolean = false;
   
   transactions: Transaction[] = [];
   isLoading: boolean = false;
@@ -36,6 +38,9 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchTransactions();
+    const userType = localStorage.getItem('user_type');
+    this.isVendor = userType === 'vendors';
+    
   }
 
   fetchTransactions(): void {

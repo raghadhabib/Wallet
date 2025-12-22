@@ -5,22 +5,19 @@
 
 <div class="transaction-panel">
   <div class="tabs-container">
-    <button 
-      class="tab-button" 
-      [class.active]="activeTab === 'Normal'" 
-      (click)="onTabChange('Normal')">
+    <button class="tab-button" [class.active]="activeTab === 'Normal'" (click)="onTabChange('Normal')">
       Normal
     </button>
+
     <button 
+      *ngIf="!isVendor"
       class="tab-button" 
       [class.active]="activeTab === 'Charges'" 
       (click)="onTabChange('Charges')">
       Charges
     </button>
-    <button 
-      class="tab-button" 
-      [class.active]="activeTab === 'Settlements'" 
-      (click)="onTabChange('Settlements')">
+
+    <button class="tab-button" [class.active]="activeTab === 'Settlements'" (click)="onTabChange('Settlements')">
       Settlements
     </button>
   </div>
@@ -32,37 +29,35 @@
       <mat-spinner diameter="40"></mat-spinner>
     </div>
 
-    <table mat-table [dataSource]="transactions" class="data-table" *ngIf="!isLoading">
+    <table mat-table [dataSource]="transactions" class="data-table" *ngIf="!isLoading && transactions.length > 0">
       
-<ng-container matColumnDef="id">
-  <th mat-header-cell *matHeaderCellDef>Transactions <span class="material-icons sort-icon">swap_vert</span></th>
-  <td mat-cell *matCellDef="let transaction">
-    <div class="transaction-id">{{ transaction.id }}</div>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Transactions <span class="material-icons sort-icon">swap_vert</span></th>
+        <td mat-cell *matCellDef="let transaction">
+          <div class="transaction-id">{{ transaction.id }}</div>
 
-    <div class="transaction-details" *ngIf="activeTab === 'Normal'">
-      <span class="sender-name">
-        {{ transaction.sender_wallet?.name || transaction.sender_wallet?.walletable?.name || transaction.from_name }}
-      </span>
+          <div class="transaction-details" *ngIf="activeTab === 'Normal'">
+            <span class="sender-name">
+              {{ transaction.sender_wallet?.name || transaction.sender_wallet?.walletable?.name || transaction.from_name }}
+            </span>
+            <span class="material-icons detail-arrow">arrow_forward</span>
+            <span class="recipient-name">
+              {{ transaction.recipient_wallet?.name || transaction.recipient_wallet?.walletable?.name || transaction.to_name }}
+            </span>
+          </div>
 
-      <span class="material-icons detail-arrow">arrow_forward</span>
-
-      <span class="recipient-name">
-        {{ transaction.recipient_wallet?.name || transaction.recipient_wallet?.walletable?.name || transaction.to_name }}
-      </span>
-    </div>
-
-    <div class="transaction-wallet-name" *ngIf="activeTab !== 'Normal'">
-       {{ 
-            transaction.recipient_wallet?.name || 
-            transaction.recipient_wallet?.walletable?.name || 
-            transaction.to_name || 
-            transaction.sender_wallet?.name || 
-            transaction.sender_wallet?.walletable?.name || 
-            transaction.from_name 
-         }}
-    </div>
-  </td>
-</ng-container>
+          <div class="transaction-wallet-name" *ngIf="activeTab !== 'Normal'">
+             → {{ 
+                  transaction.recipient_wallet?.name || 
+                  transaction.recipient_wallet?.walletable?.name || 
+                  transaction.to_name || 
+                  transaction.sender_wallet?.name || 
+                  transaction.sender_wallet?.walletable?.name || 
+                  transaction.from_name 
+               }}
+          </div>
+        </td>
+      </ng-container>
 
       <ng-container matColumnDef="details">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -77,11 +72,11 @@
         <th mat-header-cell *matHeaderCellDef>Date</th>
         <td mat-cell *matCellDef="let transaction">
           <div class="transaction-date-main">
-      {{ transaction.action_datetime | date:'d, MMM, y' }}
+            {{ transaction.action_datetime | date:'d, MMM, y' }}
           </div>
           <div class="transaction-time">
-      {{ transaction.action_datetime | date:'h:mm a' }}
-            </div>
+            {{ transaction.action_datetime | date:'h:mm a' }}
+          </div>
         </td>
       </ng-container>
 
@@ -98,12 +93,18 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     
-    <div *ngIf="transactions.length === 0 && !isLoading" class="no-data-message">
-      No transactions available for this type.
+    <div *ngIf="transactions.length === 0 && !isLoading" class="no-transactions-container">
+      <div class="empty-state-content">
+        <img src="assets/images/empty-transactions.svg" alt="No transactions" class="empty-state-img">
+        <h3 class="empty-state-title">No transactions yet</h3>
+        <p class="empty-state-description">
+          Once you start sending or receiving payments, your transaction history will appear here for easy tracking and management.
+        </p>
+      </div>
     </div>
 
     <mat-paginator
-      *ngIf="!isLoading && totalItems > pageSize"
+      *ngIf="!isLoading && totalItems > pageSize && transactions.length > 0"
       [length]="totalItems" 
       [pageSize]="pageSize"
       [pageIndex]="currentPage - 1"

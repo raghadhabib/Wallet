@@ -150,7 +150,51 @@
 
 .transaction-wallet-name {
     font-size: 0.8rem;
-    color:#959595; /* Gray color */
+    color:#959595; 
     margin-top: 2px;
     display: block;
+}
+
+/* Container for the empty state */
+.no-transactions-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.empty-state-content {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Illustration styling */
+.empty-state-img {
+    width: 180px;
+    height: auto;
+    margin-bottom: 32px;
+}
+
+/* Heading styling */
+.empty-state-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+/* Text styling */
+.empty-state-description {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Hide paginator when empty */
+.custom-paginator {
+    border-top: 1px solid #f0f0f0;
 }

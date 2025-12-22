@@ -16,7 +16,7 @@ export const routes: Routes = [
     children: [
       { path: 'users', component: UsersWalletsComponent },
       { path: 'transactions', component: TransactionsComponent }, 
-      { path: '', redirectTo: 'users', pathMatch: 'full' }, 
+      { path: '', redirectTo: 'users', pathMatch: 'full' }, // fix this for vendor
       { path: 'vendors', component: VendorsWalletsComponent },
      { path: 'users/profile/:id', component: UserProfileComponent },
       { path: 'my-wallet', component: VendorsWalletsComponent, data: { role: 'vendor' } },
