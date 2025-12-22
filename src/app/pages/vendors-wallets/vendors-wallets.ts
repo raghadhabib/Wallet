@@ -36,9 +36,12 @@ import { SuccessToastComponent } from '../../shared/success-toast/success-toast'
   styleUrls: ['./vendors-wallets.css']
 })
 export class VendorsWalletsComponent implements OnInit {
+  walletData: any = null;
+  errorMessage: string = '';
   displayedColumns: string[] = ['users', 'balance', 'actions'];
   vendors: any[] = [];
   isLoading = false;
+  isVendor: boolean = false;
   
   // Pagination properties
   totalItems = 0;
@@ -54,7 +57,26 @@ export class VendorsWalletsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    console.log('INIT: VendorsWalletsComponent started');
+  const userType = localStorage.getItem('user_type');
+  const walletId = localStorage.getItem('wallet_id');
+  
+  console.log('DEBUG: userType found ->', userType);
+  console.log('DEBUG: walletId found ->', walletId);
+
+  this.isVendor = userType === 'vendors';
+  
+  if (this.isVendor) {
+    console.log('FLOW: User is vendor, calling loadVendorBalance()');
+    this.loadVendorBalance();
+  } else {
+    console.log('FLOW: User is merchant, calling loadVendors()');
     this.loadVendors();
+  }
+
+    
+   
   }
 
   loadVendors() {
@@ -72,6 +94,23 @@ export class VendorsWalletsComponent implements OnInit {
         console.error(err);
       }
     });
+  }
+
+  loadVendorBalance() {
+    const walletId = localStorage.getItem('wallet_id');
+  if (walletId) {
+    this.isLoading = true;
+    this.userService.getUserBalance(walletId).subscribe({
+      next: (res) => {
+        this.walletData = res.data; // This matches your JSON: data.wallet_name, data.balance, etc.
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Balance Error:', err);
+        this.isLoading = false;
+      }
+    });
+  }
   }
 
   applyFilter() {

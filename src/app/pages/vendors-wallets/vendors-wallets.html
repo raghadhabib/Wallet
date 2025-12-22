@@ -1,67 +1,104 @@
-<div class="page-header">
-  <h2>Vendors</h2>
-  <p>Manage vendors and their wallet permissions</p>
+<div *ngIf="isLoading" class="loading-spinner-container">
+  <mat-spinner diameter="40"></mat-spinner>
 </div>
 
-<div class="vendor-panel">
-  <h3 class="panel-title">Vendor Management</h3>
-  
-   <div class="search-box">
-    <span class="material-icons search-icon">search</span>
-    <input 
-      type="text" 
-      placeholder="Search" 
-      [(ngModel)]="searchQuery"
-      (ngModelChange)="applyFilter()"
-    >
+<ng-container *ngIf="!isLoading && isVendor">
+  <div class="page-header">
+    <h2>Your Wallet</h2>
+    <p>View your current balance and wallet details</p>
   </div>
 
-  <div class="table-container">
-    <div *ngIf="isLoading" class="loading-spinner-container">
-      <mat-spinner diameter="40"></mat-spinner>
+  <div class="wallet-card-container" *ngIf="walletData">
+    <div class="wallet-info-grid">
+      <div class="info-group">
+        <label>User Name</label>
+        <div class="info-value">{{ walletData.wallet_name }}</div>
+      </div>
+      
+      <div class="info-group">
+        <label>Wallet ID</label>
+        <div class="info-value">{{ walletData.unique_key }}</div>
+      </div>
     </div>
 
-    <table mat-table [dataSource]="filteredVendors" class="data-table" *ngIf="!isLoading">
-      <ng-container matColumnDef="users">
-        <th mat-header-cell *matHeaderCellDef>
-          Users <mat-icon class="sort-icon">swap_vert</mat-icon>
-        </th>
-        <td mat-cell *matCellDef="let vendor">
-          <div class="vendor-name">{{ vendor.walletable?.name }}</div>
-          <div class="vendor-key">{{ vendor.unique_key }}</div>
-        </td>
-      </ng-container>
+    <hr class="divider">
 
-      <ng-container matColumnDef="balance">
-        <th mat-header-cell *matHeaderCellDef>Balance</th>
-        <td mat-cell *matCellDef="let vendor" class="balance-cell">
-          <span class="balance-amount">{{ vendor.balance | currency }}</span>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let vendor" class="actions-cell">
-          <button mat-flat-button color="primary" class="settle-btn" (click)="onSettleMoney(vendor)">
-            Settle Money
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-     <mat-paginator
-      *ngIf="!isLoading"
-      [length]="totalItems" 
-      [pageSize]="pageSize"
-      [pageIndex]="currentPage - 1"
-        (page)="onPageChange($event)"
-      showFirstLastButtons
-      class="custom-paginator"
-       
-    >
-    </mat-paginator>
+    <div class="balance-section">
+      <span class="balance-label">Available Balance:</span>
+      <span class="balance-amount">${{ walletData.balance | number:'1.2-2' }}</span>
+    </div>
   </div>
-</div>
+
+  <div *ngIf="!walletData" class="no-data-msg">
+    <p>Unable to retrieve wallet information. Please contact support.</p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !isVendor">
+  <div class="page-header">
+    <h2>Vendor Management</h2>
+    <p>Manage and monitor all vendor wallets</p>
+  </div>
+  
+  <div class="vendor-panel">
+    <h3 class="panel-title">Vendor Management</h3>
+    
+    <div class="search-box">
+      <span class="material-icons search-icon">search</span>
+      <input 
+        type="text" 
+        placeholder="Search by name or ID..." 
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="applyFilter()"
+      >
+    </div>
+
+    <div class="table-container">
+      <table mat-table [dataSource]="filteredVendors" class="data-table">
+        
+        <ng-container matColumnDef="users">
+          <th mat-header-cell *matHeaderCellDef>
+            Users <mat-icon class="sort-icon">swap_vert</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let vendor">
+            <div class="vendor-name">{{ vendor.walletable?.name || 'N/A' }}</div>
+            <div class="vendor-key">{{ vendor.unique_key }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef>Balance</th>
+          <td mat-cell *matCellDef="let vendor" class="balance-cell">
+            <span class="balance-amount">{{ vendor.balance | currency }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let vendor" class="actions-cell">
+            <button mat-flat-button color="primary" class="settle-btn" (click)="onSettleMoney(vendor)">
+              Settle Money
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <div *ngIf="filteredVendors.length === 0" class="no-results">
+        No vendors found matching your criteria.
+      </div>
+
+      <mat-paginator
+        [length]="totalItems" 
+        [pageSize]="pageSize"
+        [pageIndex]="currentPage - 1"
+        (page)="onPageChange($event)"
+        showFirstLastButtons
+        class="custom-paginator"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</ng-container>

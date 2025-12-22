@@ -41,6 +41,17 @@ export interface UserWalletListResponse {
   };
   current_datetime: string;
 }
+export interface WalletBalanceResponse {
+  data: {
+    wallet_id: number;
+    balance: number;
+    is_active: boolean;
+    walletable_type: string;
+    unique_key: string;
+    wallet_name: string;
+  };
+  current_datetime: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -72,9 +83,9 @@ export class UserService {
 }
 
 // Get specific wallet balance/details
-getUserBalance(walletId: string): Observable<any> {
+getUserBalance(walletId: string): Observable<WalletBalanceResponse> {
   const url = `${environment.apiUrl}/wallets/balance`; 
-  return this.http.get<any>(url, { params: { wallet_id: walletId } });
+  return this.http.get<WalletBalanceResponse>(url, { params: { wallet_id: walletId } });
 }
 
 // Get transactions for this specific wallet
