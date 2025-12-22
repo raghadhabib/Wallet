@@ -198,3 +198,26 @@
 .custom-paginator {
     border-top: 1px solid #f0f0f0;
 }
+
+/* Match the Settlement row styling from the screenshot */
+.data-table .mat-column-transactions {
+    padding-left: 24px !important;
+}
+
+.vendor-name-subtext {
+    display: block;
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.amount-settlement {
+    color: #156b4e; /* The green from your image */
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.date-text {
+    color: #374151;
+    font-size: 14px;
+}

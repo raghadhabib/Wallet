@@ -47,7 +47,7 @@
           </div>
 
           <div class="transaction-wallet-name" *ngIf="activeTab !== 'Normal'">
-             → {{ 
+             {{ 
                   transaction.recipient_wallet?.name || 
                   transaction.recipient_wallet?.walletable?.name || 
                   transaction.to_name || 

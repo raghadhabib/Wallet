@@ -8,9 +8,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = authService.getToken();
 
   
- if (req.url.includes('/login')) {
-    return next(req);
-  }
+ if (req.url.includes('/login') || req.url.includes('assets/')) {
+    return next(req);
+  }
 
  
 if (token) {
