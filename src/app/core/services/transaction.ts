@@ -66,16 +66,26 @@ export class TransactionService {
   //  * @param pageSize - حجم الصفحة
   //  * @param uiType - نوع المعاملة كما يظهر في الـ UI (Normal, Charges, Settlements)
   //  */
- getTransactions(page: number = 1, pageSize: number = 10, uiType: string = 'Normal'): Observable<TransactionListResponse> {
-    const url = `${this.baseUrl}/transactions/getMerchantTransactionsList`; 
-    const apiType = this.getTypeMapping(uiType);
+getTransactions(page: number = 1, pageSize: number = 10, uiType: string = 'Normal'): Observable<TransactionListResponse> {
+    const userType = localStorage.getItem('user_type');
+    const walletId = localStorage.getItem('wallet_id');
     
-    // If the user is a vendor, the backend usually expects their specific wallet context
-    const params = {
+    // 1. Determine the correct URL based on user type
+    // Merchants use 'getMerchantTransactionsList', Vendors use 'list'
+    const endpoint = (userType === 'vendors') ? 'list' : 'getMerchantTransactionsList';
+    const url = `${this.baseUrl}/transactions/${endpoint}`;
+
+    // 2. Setup base parameters
+    const params: Record<string, string> = {
       page: page.toString(),
       page_size: pageSize.toString(),
-      type: apiType
+      type: this.getTypeMapping(uiType)
     };
+
+    // 3. Only attach wallet_id if the user is a vendor
+    if (userType === 'vendors' && walletId) {
+      params['wallet_id'] = walletId;
+    }
 
     return this.http.get<TransactionListResponse>(url, { params });
 }

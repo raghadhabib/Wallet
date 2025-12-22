@@ -46,6 +46,7 @@ export class TransactionsComponent implements OnInit {
   fetchTransactions(): void {
     this.isLoading = true;
     const transactionType = this.activeTab; 
+    const walletId = localStorage.getItem('wallet_id');
 
     this.TransactionService.getTransactions(this.currentPage, this.pageSize, transactionType).subscribe({
       next: (response) => {
