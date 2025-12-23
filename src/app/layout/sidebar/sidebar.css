@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 2001; /* High z-index to stay on top */
+    z-index: 2001; 
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
@@ -155,13 +155,13 @@
 @media (max-width: 768px) {
     .sidebar-container {
         position: fixed;
-        left: -250px; /* Hide off-screen */
+        left: -250px; 
         z-index: 1000;
         transition: left 0.3s ease;
         box-shadow: 2px 0 10px rgba(0,0,0,0.1);
     }
 
-    /* When we add an 'open' class via JS/Angular */
+   
     .sidebar-container.active {
         left: 0;
     }

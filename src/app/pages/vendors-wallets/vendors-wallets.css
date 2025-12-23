@@ -1,4 +1,3 @@
-/* Reusing card style from Transactions */
 .vendor-panel {
   background-color: white;
   padding: 24px;
@@ -94,7 +93,7 @@
 
 
 
-/* Vendor-Specific Card Styles (Matches Screenshot) */
+/* Vendor-Specific Card Styles  */
 .wallet-card-container {
     background: white;
     border-radius: 12px;
@@ -138,7 +137,7 @@
     background: #ffffff;
     border-radius: 12px;
     padding: 32px;
-    border: 1px solid #eaecf0; /* Soft border from screenshot */
+    border: 1px solid #eaecf0; 
     max-width: 900px;
     box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
 }
@@ -153,7 +152,7 @@
 
 .info-group label {
     display: block;
-    color: #98a2b3; /* Muted gray label */
+    color: #98a2b3; 
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 8px;
@@ -161,7 +160,7 @@
 }
 
 .info-value {
-    color: #1d2939; /* Darker text for values */
+    color: #1d2939; 
     font-size: 18px;
     font-weight: 600;
 }

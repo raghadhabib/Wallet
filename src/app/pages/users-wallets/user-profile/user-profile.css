@@ -96,7 +96,7 @@
 }
 
 .balance-amount {
-  color: #10b981; /* Green color for balance */
+  color: #10b981; 
 }
 
 .profile-table {
@@ -137,7 +137,7 @@
   width: 150px;
   height: auto;
   margin-bottom: 24px;
-  opacity: 0.6; /* Softens the look */
+  opacity: 0.6; 
 }
 
 .empty-state-container h3 {

@@ -16,7 +16,7 @@ export class WalletActionsModalComponent {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<WalletActionsModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { wallet: any } // Pass the user wallet data here
+    @Inject(MAT_DIALOG_DATA) public data: { wallet: any } 
   ) {
     this.walletForm = this.fb.group({
       from: [{ value: data.wallet.unique_key, disabled: true }],
@@ -32,7 +32,6 @@ export class WalletActionsModalComponent {
 
   onExecute(): void {
     if (this.walletForm.valid) {
-      // Logic to call your backend service
       console.log('Executing Credit:', this.walletForm.getRawValue());
       this.dialogRef.close(this.walletForm.getRawValue());
     }

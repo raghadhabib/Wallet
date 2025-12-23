@@ -35,9 +35,9 @@ onSubmit() {
           // Success Snack-bar
           this.snackBar.open('Login Successful!', 'Close', {
             duration: 3000,
-            panelClass: ['success-snackbar'], // We will style this below
+            panelClass: ['success-snackbar'], 
             horizontalPosition: 'end',
-            verticalPosition: 'top'
+            verticalPosition: 'bottom'
           });
           this.router.navigate(['/app/users']);
         },
@@ -45,9 +45,10 @@ onSubmit() {
           // Error Snack-bar
           this.snackBar.open('These credentials do not match our records.', 'Close', {
             duration: 5000,
-            panelClass: ['error-snackbar'], // Style this red
+            panelClass: ['error-snackbar'], 
             horizontalPosition: 'end',
-            verticalPosition: 'top'
+            verticalPosition: 'bottom'
+            
           });
         }
       });

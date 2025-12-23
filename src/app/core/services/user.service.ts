@@ -62,10 +62,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * @param page - رقم الصفحة
-   * @param pageSize - حجم الصفحة
-   */
+ 
   getUsers(page: number = 1, pageSize: number = 10): Observable<UserWalletListResponse> {
     const url = `${this.baseUrl}/getUserWalletsList`;
     const params = {

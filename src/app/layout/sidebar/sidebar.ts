@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     // Check user type from localStorage
     const userType = localStorage.getItem('user_type');
-    this.isVendor = userType === 'vendors'; // Adjust string based on your API response
+    this.isVendor = userType === 'vendors'; 
     
     this.setupMenu();
   }

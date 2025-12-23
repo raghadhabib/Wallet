@@ -65,7 +65,7 @@
 /* --- Table Styling --- */
 .data-table {
     width: 100%;
-    min-width: 800px; /* Forces the table to maintain shape and scroll instead of squishing */
+    min-width: 800px; 
     border-collapse: collapse;
 }
 

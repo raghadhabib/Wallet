@@ -46,20 +46,20 @@ export class SettleModalComponent {
       duration: 5000,
       horizontalPosition: 'right',
       verticalPosition: 'bottom',
-      panelClass: ['error-snackbar'] // Matches your style requirements
+      panelClass: ['error-snackbar'] 
     });
   }
 
   onSettle() {
     const amountValue = this.settleForm.get('amount')?.value;
 
-    // 1. Check for 0 or negative values to trigger the red error
+    
     if (amountValue <= 0) {
       this.showError('Settlement amount must be positive');
       return;
     }
 
-    // 2. Proceed if the form is valid
+    
     if (this.settleForm.valid) {
       this.dialogRef.close(this.settleForm.value);
     } else {

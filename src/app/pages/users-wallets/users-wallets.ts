@@ -6,9 +6,9 @@ import { UserWallet } from '../../core/services/user.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog'; // Added MatDialogModule
+import { MatDialog, MatDialogModule } from '@angular/material/dialog'; 
 import { WalletActionsModalComponent } from './wallet-actions-modal/wallet-actions-modal';
-import { TransactionService } from '../../core/services/transaction'; // Import your transaction service
+import { TransactionService } from '../../core/services/transaction'; 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router,RouterModule } from '@angular/router';
 
@@ -21,7 +21,7 @@ import { Router,RouterModule } from '@angular/router';
     MatTableModule, 
     MatProgressSpinnerModule, 
     MatPaginatorModule,
-    MatDialogModule, // Ensure this is imported here,
+    MatDialogModule, 
     RouterModule
   ], 
   templateUrl: './users-wallets.html',
@@ -42,7 +42,6 @@ export class UsersWalletsComponent implements OnInit {
 
   displayedColumns: string[] = ['user', 'balance', 'actions'];
 
-  // Inject MatDialog and TransactionService
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
@@ -55,15 +54,12 @@ export class UsersWalletsComponent implements OnInit {
     this.fetchUsers();
   }
 
-  /**
-   * Opens the Wallet Actions Modal
-   * @param wallet The specific user wallet row data
-   */
+ 
   openWalletActions(wallet: UserWallet): void {
     const dialogRef = this.dialog.open(WalletActionsModalComponent, {
       width: '500px',
       data: { wallet: wallet },
-      panelClass: 'custom-modal-container' // You can use this for custom rounded corners in global styles
+      panelClass: 'custom-modal-container' 
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -73,9 +69,7 @@ export class UsersWalletsComponent implements OnInit {
     });
   }
 
-  /**
-   * Handles the API call after the modal is submitted
-   */
+
   executeWalletAction(formData: any): void {
     this.isLoading = true;
 
@@ -86,14 +80,13 @@ export class UsersWalletsComponent implements OnInit {
     reason: formData.reason
   }
     
-    // Assuming your TransactionService has a method like fundWallet or transfer
-    // Adjust the method name and parameters based on your specific backend API
+
     console.log('Sending to API:', formData);
     
      this.transactionService.executeCredit(payload).subscribe({
       next: (res) => {
         this.isLoading = false;
-        this.fetchUsers(); // Refresh list to see new balance
+        this.fetchUsers(); 
         console.log('Transaction Successful');
       },
       error: (err) => {
@@ -103,8 +96,6 @@ export class UsersWalletsComponent implements OnInit {
       }
     });
     
-    
-    // For now, simulate a refresh
     setTimeout(() => { this.fetchUsers(); }, 1000);
   }
 
@@ -152,11 +143,11 @@ export class UsersWalletsComponent implements OnInit {
     duration: 5000,
     horizontalPosition: 'end',
     verticalPosition: 'bottom',
-    panelClass: ['error-snackbar'] // This class handles the red styling
+    panelClass: ['error-snackbar'] 
   });
 }
 
-// src/app/pages/users-wallets/users-wallets.ts
+
 viewProfile(wallet: any) {
   this.router.navigate(['/app/users/profile', wallet.id]);
 }

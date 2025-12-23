@@ -61,28 +61,22 @@ export class TransactionService {
   }
 
  
-
-  //  * @param page - رقم الصفحة
-  //  * @param pageSize - حجم الصفحة
-  //  * @param uiType - نوع المعاملة كما يظهر في الـ UI (Normal, Charges, Settlements)
-  //  */
 getTransactions(page: number = 1, pageSize: number = 10, uiType: string = 'Normal'): Observable<TransactionListResponse> {
     const userType = localStorage.getItem('user_type');
     const walletId = localStorage.getItem('wallet_id');
     
-    // 1. Determine the correct URL based on user type
-    // Merchants use 'getMerchantTransactionsList', Vendors use 'list'
+   
     const endpoint = (userType === 'vendors') ? 'list' : 'getMerchantTransactionsList';
     const url = `${this.baseUrl}/transactions/${endpoint}`;
 
-    // 2. Setup base parameters
+    
     const params: Record<string, string> = {
       page: page.toString(),
       page_size: pageSize.toString(),
       type: this.getTypeMapping(uiType)
     };
 
-    // 3. Only attach wallet_id if the user is a vendor
+    
     if (userType === 'vendors' && walletId) {
       params['wallet_id'] = walletId;
     }
@@ -90,14 +84,14 @@ getTransactions(page: number = 1, pageSize: number = 10, uiType: string = 'Norma
     return this.http.get<TransactionListResponse>(url, { params });
 }
 
-// Inside TransactionService class
+
 executeCredit(data: any): Observable<any> {
-  const url = `${this.baseUrl}/transactions/execute`; // Replace with your actual endpoint
+  const url = `${this.baseUrl}/transactions/execute`; 
   return this.http.post(url, {
     to_wallet_id: data.to,
     amount: data.amount,
     reason: data.reason,
-    type: 'credit' // or 'transfer' depending on logic
+    type: 'credit'
   });
 }
 

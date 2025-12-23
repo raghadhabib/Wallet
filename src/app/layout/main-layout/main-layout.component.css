@@ -49,11 +49,11 @@
     }
 
     .main-content {
-        padding: 16px; /* Less padding on mobile */
+        padding: 16px; 
         width: 100vw;
     }
     
-    /* Remove the fixed margin/width if you had any */
+    
     .content-wrapper {
         margin-left: 0;
     }

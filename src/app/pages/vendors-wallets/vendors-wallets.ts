@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SettleModalComponent } from './settle-modal/settle-modal';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { SuccessToastComponent } from '../../shared/success-toast/success-toast'; // Ensure this path is correct
+import { SuccessToastComponent } from '../../shared/success-toast/success-toast'; 
 
 @Component({
   selector: 'app-vendors-wallets',
@@ -28,9 +28,7 @@ import { SuccessToastComponent } from '../../shared/success-toast/success-toast'
     MatProgressSpinnerModule,
     FormsModule,
     MatDialogModule,
-    MatSnackBarModule,
-    SettleModalComponent,
-    SuccessToastComponent
+    MatSnackBarModule
   ],
   templateUrl: './vendors-wallets.html',
   styleUrls: ['./vendors-wallets.css']
@@ -53,7 +51,7 @@ export class VendorsWalletsComponent implements OnInit {
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar // Injected SnackBar service
+    private snackBar: MatSnackBar 
   ) {}
 
   ngOnInit(): void {
@@ -132,10 +130,6 @@ export class VendorsWalletsComponent implements OnInit {
     this.loadVendors();
   }
 
-  /**
-   * Opens the Settlement Modal and displays a success toast upon completion
-   * @param vendor The vendor object from the table row
-   */
   onSettleMoney(vendor: any) {
     const dialogRef = this.dialog.open(SettleModalComponent, {
       width: '450px',
@@ -157,14 +151,12 @@ export class VendorsWalletsComponent implements OnInit {
     });
   }
 
-  /**
-   * Displays the custom success toast exactly like the provided image
-   */
+ 
   private showSuccessToast() {
   this.snackBar.openFromComponent(SuccessToastComponent, {
     duration: 5000,
-    horizontalPosition: 'end',    // Right side
-    verticalPosition: 'bottom',   // Change from 'top' to 'bottom'
+    horizontalPosition: 'end',    
+    verticalPosition: 'bottom',  
     panelClass: ['custom-toast-container'] 
   });
 }

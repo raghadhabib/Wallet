@@ -1,10 +1,8 @@
-// src/app/pages/users-wallets/user-profile/user-profile.ts
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService, UserWallet } from '../../../core/services/user.service';
 import { forkJoin } from 'rxjs';
-import { CommonModule } from '@angular/common'; // Required for | date and | number
+import { CommonModule } from '@angular/common'; 
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -54,7 +52,7 @@ loadProfileData(id: string) {
     }).subscribe({
       next: (res) => {
         this.walletData = res.balance.data;
-        this.transactions = res.history.data.transactions?.data || res.history.data; // Path based on your TransactionListResponse structure
+        this.transactions = res.history.data.transactions?.data || res.history.data;
         this.isLoading = false;
       },
       error: (err) => {

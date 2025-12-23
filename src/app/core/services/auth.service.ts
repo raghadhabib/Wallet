@@ -27,7 +27,7 @@ export class AuthService {
 
   private AUTH_TOKEN_KEY = 'auth_token'; 
   private USER_TYPE_KEY = 'user_type';
-  private WALLET_ID_KEY = 'wallet_id'; // <--- Added this missing property
+  private WALLET_ID_KEY = 'wallet_id'; 
 
   private loginUrl = `${environment.apiUrl}/login`;
 
@@ -77,6 +77,6 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.AUTH_TOKEN_KEY); 
     localStorage.removeItem(this.USER_TYPE_KEY);
-    localStorage.removeItem(this.WALLET_ID_KEY); // <--- Clear wallet ID on logout
+    localStorage.removeItem(this.WALLET_ID_KEY); 
   }
 }
