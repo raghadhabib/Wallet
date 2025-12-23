@@ -15,4 +15,9 @@ import { SidebarComponent } from '../sidebar/sidebar';
   styleUrls: ['./main-layout.component.css']
 })
 export class MainLayoutComponent { 
+  isSidebarVisible = false;
+
+toggleSidebar() {
+  this.isSidebarVisible = !this.isSidebarVisible;
+}
 }

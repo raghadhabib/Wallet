@@ -115,6 +115,8 @@ label {
   color: #333;
   outline: none;
   transition: background 0.3s;
+  border: 1px solid #d1d5db; /* Added a subtle border for clarity */
+  font-size: 16px;
 }
 
 .custom-input:focus {
@@ -150,6 +152,10 @@ label {
   cursor: pointer;
   margin-top: 10px;
   transition: opacity 0.3s;
+  height: 55px; /* Fixed height for better touch target */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-signin:hover {
@@ -157,20 +163,77 @@ label {
 }
 
 /* --- responsive design --- */
-@media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
-  }
-  .left-panel, .right-panel {
-    width: 100%;
-  }
-  .left-panel {
-    height: 40vh; 
-  }
-  .right-panel {
-    height: 60vh;
-  }
-  .content-text h1 {
-    font-size: 2rem;
-  }
+/* --- Optimized Responsive Design --- */
+
+/* For Tablets (1024px and below) */
+@media (max-width: 1024px) {
+    .content-text h1 {
+        font-size: 2.2rem; /* Shrink title slightly */
+    }
+    .overlay {
+        padding: 40px;
+    }
 }
+
+/* For Mobile Devices (768px and below) */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        height: auto; /* Allow scrolling on small screens */
+        min-height: 100vh;
+    }
+
+    .left-panel {
+        width: 100%;
+        height: 30vh; /* Give more room to the form */
+        min-height: 250px;
+        display: block !important
+    }
+
+    .right-panel {
+        width: 100%;
+        height: auto;
+        padding: 40px 20px;
+        margin-top: -20px; 
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    z-index: 10;
+    }
+
+    .overlay {
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .content-text {
+        margin-top: 20px;
+    }
+
+    .content-text p {
+        max-width: 100%; /* Use full width on mobile */
+        margin: 0 auto;
+    }
+
+    .form-wrapper {
+        max-width: 100%;
+    }
+    
+    h2 {
+        text-align: center;
+        font-size: 1.75rem;
+        margin-bottom: 30px;
+    }
+}
+
+/* For Very Small Screens (480px and below) */
+@media (max-width: 480px) {
+    .left-panel {
+        display: none; /* Optional: Hide the image on very small phones to focus on the form */
+    }
+    
+    .right-panel {
+        padding: 30px 15px;
+    }
+}
+

@@ -1,25 +1,31 @@
-<div class="sidebar-container">
-  
+<div class="sidebar-container" [class.collapsed]="isCollapsed">
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    <span class="material-icons">{{ isCollapsed ? 'chevron_right' : 'chevron_left' }}</span>
+  </button>
+
   <div class="logo-section">
-    <span class="logo-text">Wallet</span>
+    <div class="logo-icon-container">
+      <img src="assets/images/wallet-logo.png" alt="Wallet Logo" class="sidebar-logo">
+    </div>
+    <span class="logo-text" *ngIf="!isCollapsed">Wallet</span>
   </div>
+  
 
   <nav class="nav-menu">
-    <a 
-      *ngFor="let item of navItems" 
-      [routerLink]="item.route" 
-      routerLinkActive="active-link"
-      class="nav-item"
-    >
+    <a *ngFor="let item of navItems" 
+       [routerLink]="item.route" 
+       routerLinkActive="active-link"
+       class="nav-item"
+       [title]="item.name">
       <span class="material-icons">{{ item.icon }}</span>
-      <span class="item-name">{{ item.name }}</span>
+      <span class="item-name" *ngIf="!isCollapsed">{{ item.name }}</span>
     </a>
   </nav>
 
   <div class="logout-section">
     <button (click)="onLogout()" class="logout-button">
       <span class="material-icons">logout</span>
-      <span>Logout</span>
+      <span class="item-name" *ngIf="!isCollapsed">Logout</span>
     </button>
   </div>
 </div>

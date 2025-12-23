@@ -14,6 +14,10 @@ import { OnInit } from '@angular/core';
 
 export class SidebarComponent implements OnInit {
   isVendor: boolean = false;
+  isCollapsed: boolean = false;
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 
    navItems = [
     { name: 'Users & Wallets', icon: 'person_outline', route: '/app/users' },

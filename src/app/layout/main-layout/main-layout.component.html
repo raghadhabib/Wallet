@@ -1,8 +1,14 @@
 <div class="main-wrapper">
-  
-  <app-sidebar></app-sidebar> 
+  <div class="mobile-top-bar">
+    <button class="menu-btn" (click)="toggleSidebar()">
+      <span class="material-icons">menu</span>
+    </button>
+    <span class="logo-text">Wallet</span>
+  </div>
 
-  <div class="content-wrapper">    
+  <app-sidebar [class.active]="isSidebarVisible"></app-sidebar>
+
+  <div class="content-wrapper" (click)="isSidebarVisible = false"> 
     <div class="main-content">
       <router-outlet></router-outlet>
     </div>

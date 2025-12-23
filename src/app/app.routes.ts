@@ -18,7 +18,7 @@ export const routes: Routes = [
       { path: 'transactions', component: TransactionsComponent }, 
       { path: '', redirectTo: 'users', pathMatch: 'full' }, // fix this for vendor
       { path: 'vendors', component: VendorsWalletsComponent },
-     { path: 'users/profile/:id', component: UserProfileComponent },
+      { path: 'users/profile/:id', component: UserProfileComponent },
       { path: 'my-wallet', component: VendorsWalletsComponent, data: { role: 'vendor' } },
     ],
   },

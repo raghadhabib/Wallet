@@ -1,5 +1,6 @@
 .main-wrapper {
   display: flex;
+  width: 100%;
   height: 100vh;
   background-color: #fafbfc;
   overflow: hidden;
@@ -10,6 +11,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .main-content {
@@ -37,20 +39,59 @@
   background: #9ca3af;
 }
 
-@media (max-width: 768px) {
-  .main-wrapper {
-    flex-direction: column;
-  }
-  
-  .sidebar-container {
-    width: 100%;
-    min-width: auto;
-    height: auto;
-    border-right: none;
+/* Hide mobile header by default on Desktop */
+.mobile-top-bar {
+    display: none;
+    background: white;
+    padding: 15px 20px;
     border-bottom: 1px solid #f0f0f0;
-  }
-  
-  .main-content {
-    padding: 20px;
-  }
+    align-items: center;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .mobile-top-bar {
+        display: flex; /* Only show on mobile */
+    }
+
+    /* Ensure the sidebar moves on top of content */
+    app-sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        height: 100vh;
+        z-index: 2000;
+        transition: left 0.3s ease-in-out;
+    }
+
+    app-sidebar.active {
+        left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-wrapper {
+        flex-direction: column;
+    }
+
+    .main-content {
+        padding: 16px; /* Less padding on mobile */
+        width: 100vw;
+    }
+    
+    /* Remove the fixed margin/width if you had any */
+    .content-wrapper {
+        margin-left: 0;
+    }
 }
