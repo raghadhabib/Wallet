@@ -39,7 +39,7 @@ onSubmit() {
             horizontalPosition: 'end',
             verticalPosition: 'bottom'
           });
-          this.router.navigate(['/app/users']);
+          this.router.navigate(['/app']);
         },
         error: (err) => {
           // Error Snack-bar

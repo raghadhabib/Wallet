@@ -69,6 +69,9 @@ export class AuthService {
   getToken(): string | null {  
     return localStorage.getItem(this.AUTH_TOKEN_KEY);
   }
+  getUserType(): string | null {
+  return localStorage.getItem(this.USER_TYPE_KEY);
+}
 
   isLoggedIn(): boolean {
     return !!this.getToken();
