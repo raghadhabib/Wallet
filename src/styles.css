@@ -125,18 +125,19 @@ body, body th , body td {
     color: #6b7280;
 }
 
-/* target the snackbar container to remove the default background and shadow */
+
+
 .custom-toast-container.mat-mdc-snack-bar-container .mdc-snackbar__surface {
   background-color: transparent !important;
   box-shadow: none !important;
 }
 
-/* Remove default padding so your custom component fills the space */
+
 .custom-toast-container .mdc-snackbar__label {
   padding: 0 !important;
 }
 
-/* Ensure the host element doesn't add extra width/background */
+
 .custom-toast-container {
   background: transparent !important;
 }
@@ -144,16 +145,44 @@ body, body th , body td {
 
 
 .error-snackbar {
-  background-color: #fef2f2 !important; /* Light red background */
-  color: #991b1b !important; /* Dark red text */
-  border-left: 5px solid #ef4444; /* Bright red border-left */
+  background-color: #fef2f2 !important; 
+  color: #991b1b !important; 
+  border-left: 5px solid #ef4444; 
   border-radius: 8px !important;
   box-shadow: 0 4px 6px -1px rgba(222, 185, 185, 0.1);
 }
 
 
-/* To add the "error" text and icon style specifically */
+
 .error-snackbar .mat-simple-snackbar-action {
   color: #991b1b !important;
   font-weight: bold;
 }
+
+/* Success Style  */
+.mat-mdc-snack-bar-container.success-snackbar .mdc-snackbar__surface {
+  background-color: #ecfdf5 !important; 
+  border-left: 5px solid #10b981 !important; 
+}
+.success-snackbar .mdc-snackbar__label {
+  color: #065f46 !important; 
+  font-weight: 500;
+}
+
+
+.mat-mdc-snack-bar-container.error-snackbar .mdc-snackbar__surface {
+  background-color: #fef2f2 !important; 
+  border-left: 5px solid #ef4444 !important; 
+}
+.error-snackbar .mdc-snackbar__label {
+  color: #991b1b !important; 
+  font-weight: 500;
+}
+
+
+.success-snackbar .mat-mdc-snack-bar-action,
+.error-snackbar .mat-mdc-snack-bar-action {
+  color: #6b7280 !important;
+}
+
+

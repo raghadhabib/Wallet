@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service'; 
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   isPasswordVisible: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router,private snackBar: MatSnackBar) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
@@ -27,16 +28,29 @@ export class LoginComponent {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
   
-onSubmit(): void {
-    if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe({
-        next: (res) => {
-          console.log('Login Success', res);
-          // ⬅️ الانتقال إلى الصفحة الرئيسية المحمية
-          this.router.navigate(['/app']); 
-        },
-        error: (err) => console.error('Login Failed', err)
-      });
-    }
-  }
+onSubmit() {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          // Success Snack-bar
+          this.snackBar.open('Login Successful!', 'Close', {
+            duration: 3000,
+            panelClass: ['success-snackbar'], // We will style this below
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+          this.router.navigate(['/app/users']);
+        },
+        error: (err) => {
+          // Error Snack-bar
+          this.snackBar.open('These credentials do not match our records.', 'Close', {
+            duration: 5000,
+            panelClass: ['error-snackbar'], // Style this red
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      });
+    }
+  }
 }

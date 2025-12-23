@@ -39,50 +39,13 @@
   background: #9ca3af;
 }
 
-/* Hide mobile header by default on Desktop */
-.mobile-top-bar {
-    display: none;
-    background: white;
-    padding: 15px 20px;
-    border-bottom: 1px solid #f0f0f0;
-    align-items: center;
-    gap: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 1001;
-}
 
-.menu-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
 
-@media (max-width: 768px) {
-    .mobile-top-bar {
-        display: flex; /* Only show on mobile */
-    }
-
-    /* Ensure the sidebar moves on top of content */
-    app-sidebar {
-        position: fixed;
-        left: -250px;
-        top: 0;
-        height: 100vh;
-        z-index: 2000;
-        transition: left 0.3s ease-in-out;
-    }
-
-    app-sidebar.active {
-        left: 0;
-    }
-}
 
 @media (max-width: 768px) {
     .main-wrapper {
-        flex-direction: column;
+        flex-direction: row;
+        display: flex;
     }
 
     .main-content {

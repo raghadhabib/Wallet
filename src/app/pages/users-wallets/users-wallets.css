@@ -37,6 +37,7 @@
     padding: 10px 14px;
     background-color: #ffffff;
     transition: border-color 0.2s;
+    max-width: 400px;
 }
 
 .search-box:focus-within {
